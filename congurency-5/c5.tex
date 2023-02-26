@@ -1,0 +1,149 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+\item In the diagram below, $DE \perp AC, BF\perp AC, AB=CD, AE=CF$, prove that $\triangle{DEG}\cong\triangle{BFG}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+G=(0,0);
+A=(-4,0);
+EE=(-2,0);
+F=(2,0);
+C=(4,0);
+B=(2,3);
+D=(-2,-3);
+draw(B--D);
+draw(D--EE);
+draw(B--F);
+draw(B--A--C--D);
+label("$A$",A,W);
+label("$B$",B,N);
+label("$C$",C,E);
+label("$D$",D,S);
+label("$E$",EE,SW);
+label("$F$",F,NE);
+label("$G$",G,NW);
+markrightangle(G,EE,D,size=2mm);
+markrightangle(B,F,A,size=2mm);
+\end{asy}
+
+\item In the diagram below, $\angle{ADC}=90^\circ, BE\perp{AC}, AE=AD$. Prove that $\triangle{CEF}\cong\triangle{BDF}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+D=(0,0);
+A=(-4,0);
+B=(1.5,0);
+C=(0,4);
+F=(0,1.6);
+EE=extension(B,F,A,C);
+draw(A--D--C--A);
+draw(B--EE);
+draw(A--F);
+draw(D--B);
+label("$A$",A,W);
+label("$B$",B,E);
+label("$C$",C,E);
+label("$D$",D,S);
+label("$E$",EE,W);
+label("$F$",F,NE);
+markrightangle(A,EE,B,size=2mm);
+markrightangle(C,D,A,size=2mm);
+\end{asy}
+
+\item In the diagram below, $BC=BD, AB=EB$, prove that $\triangle{ACD}\cong\triangle{EDC}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+C=(2,0);
+D=(-2,0);
+A=(1.5,2);
+EE=(-1.5,2);
+B=extension(A,D,C,EE);
+draw(A--C--D--A);
+draw(C--EE--D);
+label("$A$",A,N);
+label("$B$",B,N);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,N);
+\end{asy}
+
+\item In the diagram below, $AB=AC, \angle{BAC}=90^\circ, \angle{DAE}=90^\circ, \angle{ABD}=
+\angle{ACE}$, prove that $BD=CE$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+C=(2,0);
+B=(-2,0);
+A=(0,2);
+EE=(0.2,1);
+D=(-1,1.8);
+draw(A--C--B--A);
+draw(A--D--B);
+draw(A--EE--C);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,W);
+label("$E$",EE,S);
+\end{asy}
+
+\item In the diagram below, $AB=AC, \angle{B}=\angle{C}$, prove that $BD=CE$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+C=(2,0);
+B=(-2,0);
+A=(0,3);
+F=(0,1);
+EE=extension(B,F,A,C);
+D=extension(C,F,A,B);
+draw(EE--B--A--C--D);
+draw(A--F);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,W);
+label("$E$",EE,E);
+label("$F$",F,S);
+\end{asy}
+
+
+\end{enumerate}
+
+
+\end{document}

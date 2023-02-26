@@ -1,0 +1,8 @@
+.DS_Store
+*.pdf
+*.eps
+*.asy
+*.aux
+*.log
+*.pre
+*.gz
