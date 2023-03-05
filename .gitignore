@@ -1,4 +1,5 @@
 .DS_Store
+*.sum
 *.pdf
 *.eps
 *.asy
