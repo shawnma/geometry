@@ -1,0 +1,226 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\title{Congurency, practice 6}
+\date{\today}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+
+\begin{enumerate}
+\item In the diagram below, $ABCD$ is a rectangle, fold $\triangle{BCD}$ align the line of BD as $\triangle{BC'D}$. Prove that $AE=C'E$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(0,4);
+B=(0,0);
+C=(6,0);
+D=(6,4);
+EE=(2.1,5.6);
+F=extension(B,EE,A,D);
+draw(A--B--C--D--A);
+draw(B--D--EE--B);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,E);
+label("$C'$",EE,N);
+label("$E$",F,SE);
+\end{asy}
+
+\item In the diagram below, $AB=CD, \angle{ABC}=\angle{BCD}$. Prove that $OA=OD$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(-2,4);
+B=(-3,0);
+C=(3,0);
+D=(2,4);
+draw(A--B--C--D--cycle);
+draw(A--C);
+draw(B--D);
+F=extension(A,C,B,D);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,N);
+label("$O$",F,S);
+\end{asy}
+
+\item In the right $\triangle{ACB}$ below, $CD\perp{AB}, AF$ bisects $\angle{CAB}$. Prove that $CE=CF$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(7cm);
+pair A,B,C,D,EE,F,G,H;
+A=(-1,0);
+B=(3,0);
+C=(0,2);
+D=(0,0);
+G=(2,1.9);
+EE=extension(C,D,A,G);
+F=extension(C,B,A,G);
+draw(A--B--C--cycle);
+draw(A--F);
+draw(C--D);
+label("$A$",A,W);
+label("$B$",B,S);
+label("$C$",C,N);
+label("$D$",D,S);
+label("$E$",EE,SE);
+label("$F$",F,NE);
+markrightangle(A,C,B,size=2mm);
+markrightangle(C,D,B,size=2mm);
+\end{asy}
+
+\item In the diagram below, right triangle $\triangle{ACB}\cong\triangle{DEB}$. Prove that $AF+EF=DE$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(4*sqrt(3),0);
+B=(0,4);
+C=(0,0);
+D=(4*sqrt(3),8);
+F=(2,0);
+EE=extension(A,B,D,F);
+draw(B--C--A--B--D--F);
+label("$A$",A,S);
+label("$B$",B,W);
+label("$C$",C,W);
+label("$D$",D,E);
+label("$E$",EE,E);
+label("$F$",F,S);
+markrightangle(D,EE,B,size=2mm);
+markrightangle(A,C,B,size=2mm);
+\end{asy}
+
+\item In the diagram below, $AB=AF, BC=EF, \angle{B}=\angle{F}$, D is the midpoint of CE, prove that $AD\perp{CE}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(0,4);
+B=(-3,2);
+C=(-2.5,0);
+D=(0,0);
+EE=(2.5,0);
+F=(3,2);
+draw(A--B--C--D--EE--F--A);
+draw(A--D);
+label("$A$",A,N);
+label("$B$",B,W);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,S);
+label("$F$",F,E);
+\end{asy}
+
+
+\item $\bigstar$ In the diagram below, $AB=5, AC=3$, D is the midpoint of BC. What is the range of the length of $\overline{AD}$?
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1.5,3);
+B=(-4,0);
+C=(4,0);
+D=(0,0);
+draw(B--A--C--B);
+draw(A--D);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+\end{asy}
+
+
+\item $\bigstar$ In the diagram below, $\angle{C}=\angle{E}, \angle{B}=\angle{F}, BC=EF$, D is the midpoint of CE, prove that $AD\perp{CE}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(0,4);
+B=(-3,2);
+C=(-2.5,0);
+D=(0,0);
+EE=(2.5,0);
+F=(3,2);
+draw(A--B--C--D--EE--F--A);
+draw(A--D);
+label("$A$",A,N);
+label("$B$",B,W);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,S);
+label("$F$",F,E);
+\end{asy}
+
+
+
+
+\item $\bigstar$ In the equalateral triangle below, $\overline{AB}=1, AE=CD, EF\perp{AC}$. What is the length of $\overline{FG}$?
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H,I;
+A=(0, 2*sqrt(3));
+B=(-2,0);
+C=(2,0);
+D=(3.3,0);
+G=(-2,3);
+H=(2,4);
+EE=extension(G,D,A,B);
+F=extension(A,C,EE,H);
+I=extension(D,EE,A,C);
+draw(B--A--C--B);
+draw(C--D--EE--F);
+markrightangle(EE,F,I,size=2mm);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,W);
+label("$F$",F,E);
+label("$G$",I,NE);
+\end{asy}
+
+
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Congurency, practice 7}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+
+
+
+\item $\bigstar$ In the diagram below, ABCD is a square. $\angle{FAE}=45^\circ.$ Prove that $BE=EF+DF$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(0,4);
+B=(0,0);
+C=(4,0);
+D=(4,4);
+EE=(8,0);
+F=(4,5.5);
+draw(A--B--C--D--A);
+draw(A--EE--F--D);
+draw(C--EE);
+draw(A--F);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,E);
+label("$E$",EE,S);
+label("$F$",F,N);
+markangle(EE,A,F,radius=2mm);
+\end{asy}
+
+
+\item $\bigstar$ In the diagram below, D is the midpoint of BC and E is the midpoint of DC.
+$BD=DC=AC$. Prove that $\angle{BAD}=\angle{DAE}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(3,sqrt(15));
+B=(-4,0);
+C=(4,0);
+D=(0,0);
+EE=(2,0);
+draw(B--A--C--B);
+draw(A--D);
+draw(A--EE);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,S);
+\end{asy}
+
+\item $\bigstar$ In the diagram below, $AE$ bisects $\angle{BAC}$, D is the midpoint of BC and $DE\perp{BC}, EF\perp{AB}$, prove that $AB-AC=2BF$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1.5,4);
+B=(-4,0);
+C=(4,0);
+D=(0,0);
+EE=(0,-2);
+G=(-4,2.5);
+F=extension(A,B,EE,G);
+draw(A--B--C--A);
+draw(A--EE);
+draw(D--EE);
+draw(EE--F);
+label("$A$",A,N);
+label("$B$",B,W);
+label("$C$",C,E);
+label("$D$",D,N);
+label("$E$",EE,S);
+label("$F$",F,W);
+markrightangle(E,D,B,size=2mm);
+\end{asy}
+
+\end{enumerate}
+
+
+\end{document}
