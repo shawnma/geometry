@@ -1,0 +1,205 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Area, practice 7}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+
+\section*{Basic ideas}
+\begin{enumerate}
+    \item The midline splits a triangle into two equal parts.
+    \item The areas of two triangles are the same if they have same base and height.
+    \item The diaganal line splits a parallelagram into two equal parts.
+    \item If the bases of two triangles are the same, the ratio of their areas is the same as their heights.
+\end{enumerate}
+\section*{Problems}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+
+\item In the $\triangle{ABC}$ below, $D$ is the midpoint of $BC$
+and $E$ is the midpoint of $AD$. $S_{\triangle{ABC}}=1$, what is the area of $\triangle{ABE}$?
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1,4);
+B=(-3,0);
+C=(3,0);
+D=(0,0);
+line l=line(A,D);
+EE=midpoint(l);
+draw(A--B--C--A);
+draw(A--F);
+draw(EE--B);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,E);
+\end{asy}
+
+
+
+\item In the diagram below, $BE\parallel AD \parallel CF$.
+\begin{enumerate}
+\item Prove that $S_{\triangle{AEF}}=S_{\triangle{ABC}}$
+\item Prove that $S_{\triangle{EDF}}=2S_{\triangle{ABC}}$
+\end{enumerate}
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(7cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1,2);
+B=(-3,0);
+C=(3,0);
+D=(0.5,0);
+line l=line(A,D);
+line lb=parallel(B,l);
+line lc=parallel(C,l);
+EE=intersectionpoint(lb,line(A,C));
+F=intersectionpoint(lc,line(A,B));
+draw(A--B--C--A);
+draw(D--EE--F--cycle);
+draw(C--EE);
+draw(B--EE--F--C);
+draw(A--D);
+draw(B--F);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,W);
+label("$F$",F,E);
+
+\end{asy}
+
+\item In the $\triangle{ABC}$ below, $D$ is the midpoint of $BC$. $CE\perp{AD}, BF\perp{AD}$. \\Prove that $CE=BF$ WITHOUT using congurency.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1,4);
+B=(-3,0);
+C=(3,0);
+D=(0,0);
+line l=line(A,D);
+EE=projection(l)*C;
+F=projection(l)*B;
+draw(A--B--C--A);
+draw(A--F);
+draw(EE--C);
+draw(F--B);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,SE);
+label("$E$",EE,W);
+label("$F$",F,S);
+markrightangle(B,F,D);
+markrightangle(C,EE,A);
+\end{asy}
+
+\item In the equilateral $\triangle{ABC}$ below, $h$ is the height.
+P is a random point in $\triangle{ABC}$. \\ $PE\perp{AC}, PF\perp{AB}, PD\perp{BC}$.
+Prove that $PD+PE+PF=h$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H,P;
+A=(0, 4*sqrt(3));
+B=(-4,0);
+C=(4,0);
+P=(-1,2.2);
+D=projection(line(B,C))*P;
+EE=projection(line(A,C))*P;
+F=projection(line(A,B))*P;
+draw(A--B--C--A);
+draw(P--F);draw(P--EE);draw(P--D);
+draw(P--A,dashed); draw(P--B, dashed); draw(P--C,dashed);
+//line h = perpendicular(A, line(B,C));
+H=projection(B,C)*A;
+draw("$h$", A--H,E,0.6*red);
+//draw("$h$",h);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,E);
+label("$F$",F,W);
+label("$P$",P,SE);
+markrightangle(P,F,B);
+markrightangle(P,EE,C);
+markrightangle(P,D,C);
+\end{asy}
+
+\item $\bigstar$ In the $\triangle{ABC}$ below, $AD$ bisects $\angle{BAC}$. Prove that $\dfrac{AB}{AC}=\dfrac{BD}{DC}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(1,4);
+B=(-4,0);
+C=(3,0);
+line b = bisector(line(A,B),line(A,C));
+D=intersectionpoint(b,line(B,C));
+draw(A--B--C--A);
+draw(A--D);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+\end{asy}
+
+\item $\bigstar$ In the trapezoid $ABCD$ below, $AB\parallel CD$. $M$ is the midpoint of $BC$.
+\\Prove that $S_{\triangle{AMD}}=\dfrac{1}{2}S_{ABCD}$
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(-3,0);
+B=(4,0);
+C=(3,4);
+D=(-1,4);
+EE=midpoint(line(B,C));
+draw(A--B--C--D--cycle);
+draw(A--EE--D);
+label("$A$",A,S);
+label("$B$",B,S);
+label("$C$",C,N);
+label("$D$",D,N);
+label("$M$",EE,E);
+
+\end{asy}
+
+\end{enumerate}
+
+
+\end{document}
