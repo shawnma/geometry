@@ -1,0 +1,114 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Congurency, practice 7}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+\item Express each difference in simplest form, using mixed numbers if possible.
+\begin{multicols}{2}
+
+\begin{enumerate}
+    \item $4\dfrac{7}{15}-2\dfrac{14}{15}=$
+    \item $6\dfrac{7}{18}-2\dfrac{13}{18}=$
+    \item $5\dfrac{3}{8}-1\dfrac{7}{8}=$
+    \item $12\dfrac{8}{13}-4\dfrac{10}{13}=$
+    \item $9\dfrac{19}{21}+3\dfrac{20}{21}=$
+    \item $5\dfrac{7}{12}-2\dfrac{11}{12}=$
+    \item $4\dfrac{7}{9}+2\dfrac{5}{9}=$
+    \item $2\dfrac{16}{17}+\dfrac{1}{17}=$
+\end{enumerate}
+\end{multicols}
+
+\item Write the perimeter of each shape below as a whole or mixed number in simplest form. Remember to include units.
+\begin{multicols}{2}
+\begin{enumerate}
+    \item Perimeter =
+
+    \begin{asy}
+        import markers;
+        import math;
+        import geometry;
+        size(5cm);
+        pair A,B,C,D,EE,F,G,H;
+        A=(1.5,4);
+        B=(-3,0);
+        C=(3,0);
+        draw(A--B--C--cycle);
+        label("$5\frac{5}{8}in$",A--B, NW);
+        label("$3\frac{3}{8}in$",A--C, NE);
+        label("$7\frac{7}{8}in$",C--B, S);
+    \end{asy}
+    \item Perimeter =
+
+    \begin{asy}
+        import markers;
+        import math;
+        import geometry;
+        size(5cm);
+        pair A,B,C,D,EE,F,G,H;
+        A=(0,2.3);
+        B=(0,0);
+        C=(5.7,0);
+        D=(5.7,2.3);
+        draw(A--B--C--D--cycle);
+        label("$2\frac{3}{10}cm$",A--B,E );
+        label("$5\frac{7}{10}cm$",A--D, N);
+    \end{asy}
+\end{enumerate}
+\end{multicols}
+
+
+\item Emma runs 10 days in a row. On the first day, she runs $\dfrac{5}{6}$ miles. Each day after the first, she runs $\dfrac{1}{6}$ miles farther
+than she did the day before. How many miles does Emma run all together?
+
+\item The width of the rectangle below is twice its height. The perimeter of the rectangle
+is 21cm. What is its height in centimeters?
+
+\begin{asy}
+    import markers;
+    import math;
+    import geometry;
+    size(5cm);
+    pair A,B,C,D,EE,F,G,H;
+    A=(0,2);
+    B=(0,0);
+    C=(4,0);
+    D=(4,2);
+    draw(A--B--C--D--cycle);
+\end{asy}
+
+\item Two equilateral triangles are arranged as shown below to create
+a rhombus. The perimeter of each triangle is 8 inches. What is the perimeter
+of the rhombus in inches?
+
+\begin{asy}
+    import markers;
+    import math;
+    import geometry;
+    size(5cm);
+    pair A,B,C,D,EE,F,G,H;
+    A=(0,2*sqrt(3));
+    B=(-2,0);
+    C=(2,0);
+    D=(4,2*sqrt(3));
+    draw(A--B--C--D--cycle);
+    draw(A--C);
+\end{asy}
+
+\item Luke is $5\frac{1}{4}$ inches taller than Jess. The sum of Luck's and
+Jess's heights is $82\frac{1}{4}$ inches. How many inches tall is Jess?
+\end{enumerate}
+
+\end{document}
