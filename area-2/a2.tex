@@ -1,0 +1,157 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Area, practice 2}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+
+\item A trapezoid ABCD has bases AB and CD of length 12 and 10, respectively. The diagonals AC and BD intersect at point E. If the area of triangle ABE is 24 and the area of triangle CDE is 20, find the area of trapezoid ABCD.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+D=(-2,4);
+A=(-4,0);
+B=(3,0);
+C=(2.5,4);
+EE=extension(A,C,B,D);
+draw(A--B--C--D--A);
+draw(A--C); draw(B--D);
+label("$A$",A,S);
+label("$B$",B,S);
+label("$C$",C,N);
+label("$D$",D,N);
+label("$E$",EE,S);
+\end{asy}
+    
+\item In the $\triangle{ABC}$ below, $D$ is a point on side $AB$ such that $AD:DB = 2:1$.
+$E$ is a point on side $AC$ such that $AE:EC = 3:1$. If the area of $\triangle{ADE}$ is 12 square units, find the area of $\triangle{ABC}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+A=(-3,0);
+B=(3,0);
+C=(1,3);
+D=(1,0);
+EE=(A+3*C)/4;
+draw(A--B--C--A);
+draw(C--D);
+draw(EE--B);
+draw(D--EE);
+label("$A$",A,W);
+label("$B$",B,S);
+label("$C$",C,N);
+label("$D$",D,S);
+label("$E$",EE,W);
+\end{asy}
+
+
+\item In parallelogram ABCD, E is a point on AB and F is a point on CD such that EF is parallel to AD. If the area of triangle AEF is 12 square units and $AE:EB=1:2$, find the area of parallelogram ABCD.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+D=(-1,4);
+A=(-3,0);
+B=(3,0);
+C=(5,4);
+EE=(-0.5,0);
+F=(1.5,4);
+draw(A--B--C--D--A);
+draw(F--EE);
+draw(C--EE);
+draw(A--F);
+
+label("$A$",A,S);
+label("$B$",B,S);
+label("$C$",C,N);
+label("$D$",D,N);
+label("$E$",EE,S);
+label("$F$",F,N);
+\end{asy}
+
+\item In triangle ABC, AB = 12, AC = 9, and BC = 15. Point D is on BC such that AD is perpendicular to BC. Find the area of triangle ABD.
+
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H,P;
+A=(0, 4);
+B=(-4*4/3,0);
+C=(4*3/4,0);
+draw(A--B--C--A);
+draw(A--D);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+
+\end{asy}
+
+\pagebreak
+\item In triangle ABC, AD is the altitude to BC, and E is the midpoint of AD. If the area of triangle ABE is 12 and $\overline{CD}=2\overline{BD}$, find the area of $\triangle{ABC}$.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+pair A,B,C,D,EE,F,G,H;
+B=(-4,0);
+C=(4,0);
+A=(-1,4);
+D=(-1,0);
+EE=midpoint(line(A,D));
+draw(A--B--C--cycle);
+draw(A--D); draw(EE--B); draw(EE--C);
+label("$A$",A,N);
+label("$B$",B,S);
+label("$C$",C,S);
+label("$D$",D,S);
+label("$E$",EE,NW);
+
+\end{asy}
+
+\item A regular hexagon has a side length of 6. Find the area of the region that lies inside the hexagon but outside the inscribed circle.
+
+\begin{asy}
+import markers;
+import math;
+import geometry;
+size(5cm);
+real p=0.5*sqrt(3);
+draw((1,0)--(0.5,p)--(-0.5,p)--(-1,0)--(-0.5,-p)--(0.5,-p)--cycle);
+draw(circle((0,0), p));
+\end{asy}
+
+
+\end{enumerate}
+
+
+\end{document}
