@@ -1,0 +1,113 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Similar triangle 3}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\section{Review}
+
+Please see last week's handouts for the concepts that are required for this week's practice.
+
+\section{Practice}
+\begin{enumerate}
+
+    
+\item In $\triangle{ABC}$ below, D is a point on $\overline{BC}$. How many possibilities are there for a point E such that E is on one side
+of $\triangle{ABC}$ and the triangle formed by D, E plus another vertex of $\triangle{ABC}$ is similar with $\triangle{ABC}$?
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    triangle t=triangleabc(6,8,7);
+    draw(t);label(t);
+
+    point D=(2*t.B+t.C)/3;
+    dot(D);
+    label("$D$",D,E);
+
+\end{asy}
+
+\item In $\triangle{ABC}$ below, $\angle{A}=36^\circ$. BD bisects $\angle{ABC}$, prove that $\triangle{ABC}\sim\triangle{BCD}$.
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    point B=(0,0), C=(4,0);
+    line l1=rotate(72)*line(B,C);
+    line l2=rotate(-72,C)*line(B,C);
+    point A=intersectionpoint(l1,l2);
+    triangle t=triangle(A,B,C);
+    draw(t);label(t);
+
+    line l3=rotate(36)*line(B,C);
+    point D=intersectionpoint(l3,t.AC);
+    draw(B--D);
+    label("$D$",D,E);
+\end{asy}
+
+\item $\spadesuit$ In Diagram below, $CD=AE$. Prove that $DF\cdot{BC}=AB\cdot{EF}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,8,7);
+    draw(t);label(t, LA="");
+    label("$A$",t.A,S);
+
+    point D=(1.5*t.B+t.C)/2.5;
+    point EE=(-length(t.C-D),0);
+    draw(D--EE);draw(t.A--EE);
+    label("$E$",EE,S);
+    label("$D$",D,E);
+    
+    line p=parallel(D,t.AC);
+    point K=intersectionpoint(p,t.AB);
+    draw(D--K, dashed);
+    draw("$K$",K,S);
+
+    point F=intersectionpoint(t.AC,line(D,EE));
+    label("$F$",F,NW);
+\end{asy}
+
+\item In Diagram below, $\angle{ACB}=90^\circ, DM\perp{AB}$. M is the midpoint of AB. Prove that
+\begin{enumerate}
+    \item $MC^2=MD\cdot ME$.
+    \item $\cfrac{CE^2}{CD^2}=\cfrac{ME}{MD}$
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(4,3,5);
+    draw(t);label(t);
+    
+    point M=midpoint(t.AB);
+    label("$M$",M,S);
+    line p = perpendicular(M,t.AB);
+    point D=intersectionpoint(t.AC,p);
+    draw(D--M--t.A--D);
+    point EE=intersectionpoint(t.BC,p);
+    label("$E$",EE,NE);
+    label("$D$",D,E);
+    draw(t.C--M);
+
+    markrightangle(t.B,t.C,D, size=2mm);
+    markrightangle(D,M,t.B, size=2mm);
+    
+\end{asy}
+
+\end{enumerate}
+
+\end{document}

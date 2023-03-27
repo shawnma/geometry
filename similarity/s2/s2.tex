@@ -1,0 +1,175 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Similar triangle 2}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\section{Review}
+
+Please see last week's handouts for the concepts that are required for this week's practice.
+
+\section{Practice}
+\begin{enumerate}
+
+\item In $\triangle{ABC}$ below, $\angle{CAB}=\angle{CED}$. Prove that
+\begin{enumerate}
+    \item $\triangle{CAB}\sim\triangle{CED}$
+    \item $\triangle{CDB}\sim\triangle{CEA}$
+    \item $\triangle{DOA}\sim\triangle{EOB}$
+    \item $\triangle{EOD}\sim\triangle{BOA}$
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,8,7);
+    draw(t);label(t);
+
+    point EE=(2*t.B+t.C)/3;
+
+    real b=degrees(t.AB,t.AC);
+    line k=rotate(b, EE)*line(t.C, EE);
+    point D=intersectionpoint(k, t.AC);
+
+    draw(t.A--EE);draw(t.B--D);draw(D--EE);
+    point O=intersectionpoint(line(t.B,D), line(t.A,EE));
+    label("$D$",D,W);
+    label("$O$",O,S);
+    label("$E$",EE,E);
+    markangle(t.B,t.A,t.C, radius=5mm);
+    markangle(t.C,EE,D, radius=5mm);
+\end{asy}
+
+
+\item In $\triangle{ABC}$ below, $BD\perp AC, AE\perp BE$.
+\begin{enumerate}
+    \item Prove that $\triangle{CBD}\sim\triangle{CAE}$
+    \item Prove that $\triangle{CDE}\sim\triangle{CBA}$
+    \item If $\angle{C}=60^\circ$, what is $\cfrac{DE}{AB}$?
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,6,6);
+    draw(t);label(t);
+
+    point EE=foot(t.VA);
+    point D=foot(t.VB);
+    draw(t.A--EE);draw(t.B--D);draw(D--EE);
+    point O=intersectionpoint(line(t.B,D), line(t.A,EE));
+    label("$D$",D,W);
+    label("$O$",O,S);
+    label("$E$",EE,E);
+    markrightangle(t.A,EE,t.B);
+    markrightangle(t.B,D,t.A);
+
+\end{asy}
+
+\item Which of the following statements are not true?
+\begin{enumerate}
+    \item All the right triangles are similar.
+    \item All the isosceles triangles are similar.
+    \item All the right isosceles triangles are similar.
+    \item All the equilateral triangles are similar.
+\end{enumerate}
+
+\pagebreak
+
+\item In the diagram below, $\triangle{ACB}$ and $\triangle{ADC}$ are right triangles.
+E is the midpoint of AB. AC bisects $\angle{DAB}$.
+\begin{enumerate}
+    \item Prove that $AC^2=AB\cdot{AD}$
+    \item Prove that $\triangle{AFD}\sim\triangle{CFE}$ (Note: the median of hypotenuse equals to half of the hypotenuse.)
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(3,4,5);
+    draw(t);label(t);
+    triangle t2=rotate(degrees(t.AB,t.AC))*scale(4/5)*t;
+    draw(t2);
+    label(t2, LC="$D$",LA="",LB="");
+    point EE=midpoint(t.AB);
+    draw(t2.C--EE--t.C);
+    label("$E$",EE,S);
+
+    point F=intersectionpoint(line(t2.C,EE),t.AC);
+    label("$F$",F,W);
+
+    markrightangle(t.A,t.C,t.B);
+    markrightangle(t.A,t2.C,t.C);
+
+\end{asy}
+
+\item In the diagram below, $CE:BE=1:2$. $BD\parallel{AC}$. The area of $\triangle{ACE}=8$,
+What is the area of $\triangle{ABD}$? (Recall the areas we learned two weeks ago.)
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,5,6);
+    draw(t);label(t);
+
+    point EE=(t.C*2+t.B)/3;
+    line p=parallel(t.B,t.AC);
+    point D=intersectionpoint(p,line(t.A, EE));
+    draw(t.B--D--t.A);
+    label("$D$",D,E);
+    label("$E$",EE,E);
+
+\end{asy}
+
+\item In the diagram below, $\triangle{CBA}\sim\triangle{CED}$. Prove that $\triangle{CAD}\sim\triangle{CBE}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangle((0,0),(3,1),(4,5));
+    draw(t);label(t);
+
+    triangle t2=rotate(50,t.C)*scale(1.3,t.C)*t;
+    draw(t2);
+    label(t2, LC="",LB="$E$",LA="$D$");
+    draw(t.B--t2.B);draw(t.A--t2.A);
+
+\end{asy}
+
+
+\item In the diagram below, ABCD is a parallelogram. $AE:BE=1:2$. Find the ratio of the
+perimeter of $\triangle{AEF}$ and $\triangle{CDF}$. If $[\triangle{AEF}]=6$, what is the area of $\triangle{CDF}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point A=(0,0), B=(3,0), C=(4,3), D=(1,3);
+    draw(A--B--C--D--A);
+    point EE=(1,0);
+    draw(D--EE);
+    draw(A--C);
+    label("$A$",A,S);
+    label("$B$",B, S);
+    label("$E$",EE, S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+    point f=intersectionpoint(line(D,EE),line(A,C));
+    label("$F$",f,E);
+
+\end{asy}
+
+\end{enumerate}
+
+\end{document}
