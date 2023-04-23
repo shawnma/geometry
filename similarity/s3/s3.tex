@@ -16,14 +16,8 @@
 \setlength{\parindent}{0pt}
 %\renewcommand{\familydefault}{\sfdefault}
 
-\section{Review}
-
-Please see last week's handouts for the concepts that are required for this week's practice.
-
-\section{Practice}
 \begin{enumerate}
 
-    
 \item In $\triangle{ABC}$ below, D is a point on $\overline{BC}$. How many possibilities are there for a point E such that E is on one side
 of $\triangle{ABC}$ and the triangle formed by D, E plus another vertex of $\triangle{ABC}$ is similar with $\triangle{ABC}$?
 
@@ -39,7 +33,7 @@ of $\triangle{ABC}$ and the triangle formed by D, E plus another vertex of $\tri
 
 \end{asy}
 
-\item In $\triangle{ABC}$ below, $\angle{A}=36^\circ$. BD bisects $\angle{ABC}$, prove that $\triangle{ABC}\sim\triangle{BCD}$.
+\item In isosceles $\triangle{ABC}$ below, $\angle{A}=36^\circ$. BD bisects $\angle{ABC}$, prove that $\triangle{ABC}\sim\triangle{BCD}$.
 
 \begin{asy}
     import geometry;
@@ -106,6 +100,102 @@ of $\triangle{ABC}$ and the triangle formed by D, E plus another vertex of $\tri
     markrightangle(t.B,t.C,D, size=2mm);
     markrightangle(D,M,t.B, size=2mm);
     
+\end{asy}
+
+\pagebreak
+
+\item In Diagram below, ABFE, BCGF and CDHG are all squares.
+\begin{enumerate}
+    \item Prove that $\triangle{AFG}\sim\triangle{HFA}$
+    \item What is $\angle{AGF}+\angle{AHG}$?
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(8cm);
+    point[] pt;
+    point[] pb;
+
+    for (int i=0;i<16;i+=4) {
+        pt.push((i,4));
+        pb.push((i,0));
+    }
+    draw(pt[0]--pt[3]--pb[3]--pb[0]--cycle);
+    draw(pt[1]--pb[1]);
+    draw(pt[2]--pb[2]);
+    draw(pt[0]--pb[1]);
+    draw(pt[0]--pb[2]);
+    draw(pt[0]--pb[3]);
+    string[] lt=new string[]{"A","B","C","D"};
+    string[] lb=new string[]{"E","F","G","H"};
+    for(int i=0;i<4;i+=1) {
+        label("$"+lt[i]+"$", pt[i],N);
+        label("$"+lb[i]+"$", pb[i],S);
+    }
+\end{asy}
+
+\item $\spadesuit$ In $\triangle{ABC}$ below, D is the midpoint of AB, if $CF:AF=1:3$, what is $CE:ED$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(4,5.5,5);
+    draw(t);label(t);
+    
+    point D=midpoint(t.AB);
+    label("$D$",D,S);
+    point F=(t.A+3*t.C)/4;
+    point EE=intersectionpoint(line(t.C,D),line(t.B,F));
+    label("$E$",EE,E);
+    draw(t.C--D);
+    draw(t.B--F);
+    label("$F$",F,W);
+\end{asy}
+
+
+\item In the square ABCD below, $AE:ED=DF:FC=1:3$, prove that $\angle{DEF}=\angle{CAF}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point A=(0,0), B=(4,0),C=(4,4),D=(0,4),EE=(0,1),F=(1,4);
+    draw(A--B--C--D--A--C);
+    draw(EE--F--A);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+    label("$E$",EE,W);
+    label("$F$",F,N);
+    point G=projection(line(A,C))*F;
+    draw(F--G,dashed);
+\end{asy}
+
+
+\item In the diagram below, ABCD is a parallelogram. E is a point on the extension of AB. O is
+the intersection of AC and BD. OE intersects BC at F. $AD=4, AB=5, BE=3$. What is the length of BF?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point A=(0,0), B=(5,0), C=(6,sqrt(15)), D=(1,sqrt(15));
+    draw(A--B--C--D--A);
+    point EE=(8,0);
+    draw(D--B);
+    draw(A--C);
+    point O=intersectionpoint(line(B,D),line(A,C));
+    draw(O--EE--B);
+    label("$A$",A,S);
+    label("$B$",B, S);
+    label("$E$",EE, S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+    label("$O$",O,N);
+    draw("5",A--B);
+    draw("4",A--D,W);
+    draw("$3$",B--EE);
+    point F=intersectionpoint(line(O,EE),line(B,C));
+    label("$F$",F,NE);
 \end{asy}
 
 \end{enumerate}
