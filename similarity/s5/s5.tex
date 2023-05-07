@@ -1,0 +1,153 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Similar triangle 5}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In the triangle blow, CD=CB. E is the midpoint of AB. prove that $\cfrac{CA}{CB}=\cfrac{BF}{DF}$.
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    triangle t=triangleabc(5,8,7);
+    draw(t);label(t);
+    point D=(t.A*5+t.C*3)/8;
+    point EE=midpoint(t.AB);
+    draw(t.C--EE);
+    label("$E$",EE,S);
+    label("$D$",D,W);
+    draw(D--t.B);
+    line k = parallel(D,t.AB);
+    point F=intersectionpoint(line(t.C,EE),line(t.B,D));
+    point G=intersectionpoint(k,line(t.C,EE));
+    draw(G--D,dashed);
+    label("$F$",F,SW);
+\end{asy}
+
+\item In the triangle below, F is the midpoint of BC. AD=DE=BE. CD intersects AF at G and CE intersects AF at H.
+ Find the ratio of  $AG:GH:HF$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,5,6);
+    draw(t);label(t);
+    point EE=(t.A+t.B*2)/3;
+    point D=(2*t.A+t.B)/3;
+    point F=midpoint(t.BC);
+    draw(t.C--EE);
+    draw(t.C--D);
+    draw(t.A--F);
+    label("$E$",EE,S);
+    label("$D$",D,S);
+    label("$F$",F,E);
+    point G=intersectionpoint(line(t.C,D),line(t.A,F));
+    point H=intersectionpoint(line(t.C,EE),line(t.A,F));
+    draw(F--EE,dashed);
+    label("$G$",G,W);
+    label("$H$",H,S);
+\end{asy}
+
+% 3
+\item In the isoceles triangle below, CA=CB, D is the midpoint of AB. P is a point on CD. $BF\parallel{AC}$. Prove that $AP^2=PE\cdot{PF}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,5,4);
+    draw(t);label(t);
+    point D=midpoint(t.AB);
+    line k=parallel(t.B, t.AC);
+    point P=(2,1);
+    point EE=intersectionpoint(line(t.A,P),t.BC);
+    point F=intersectionpoint(line(t.A,P),k);
+    draw(t.A--F--t.B);
+    draw(t.C--D);
+    label("$E$",EE,NW);
+    label("$D$",D,S);
+    label("$F$",F,E);
+    label("$P$",P,W);
+    
+\end{asy}
+
+%4 
+\item In the right $\triangle{ABC}$ below, $\angle{ACB}=90^\circ$. E is the midpoint of BC. $CD\perp{AB}$. Prove that
+$AC\cdot{CF}=BC\cdot{DF}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(4,3,5);
+    draw(t);label(t);
+    point EE=midpoint(t.BC);
+    point D=foot(t.AB);
+    point F=intersectionpoint(line(EE,D),t.AC);
+    draw(EE--F);
+    draw(t.C--D);
+    draw(t.A--F);
+    label("$E$",EE,E);
+    label("$D$",D,S);
+    label("$F$",F,S);
+\end{asy}
+
+\pagebreak
+\item In the diagram below, $AC\parallel{ED}\parallel{BF}$. AC=6, BF=9, find the length of DE.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,3,6);
+    draw(t);label(t);
+    line k =parallel(t.B,t.AC);
+    
+    point EE=midpoint(t.B*2+t.C*3)/5;
+    line k2=parallel(EE,t.AC);
+    point F=intersectionpoint(line(EE,t.A),k);
+    point D=intersectionpoint(k2, t.AB);
+    draw(t.A--F);
+    draw(EE--D);
+    draw(t.B--F);
+    label("$E$",EE,N);
+    label("$D$",D,S);
+    label("$F$",F,E);
+\end{asy}
+
+\item In the triangle ABC below, $\angle{BAC}=120^\circ$. AD bisects $\angle{BAC}$. Prove that $\cfrac{1}{AD}=\cfrac{1}{AB}+\cfrac{1}{AC}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point D=(0,0);
+    point A=(0.5,4);
+    line l=rotate(-60, A) * line(A,D);
+    line base=line(D,(1,0));
+    line r=rotate(60,A)*line(A,D);
+    point B=intersectionpoint(base,l);
+    point C=intersectionpoint(base,r);
+    draw(A--B--C--cycle);
+    draw(A--D);
+    label("$A$",A,N);
+    label("$B$",B,S);
+    label("$C$",C,S);
+    label("$D$",D,S);
+    line k=parallel(D,l);
+    point P=intersectionpoint(k,r);
+    draw(D--P, dashed);
+\end{asy}
+\end{enumerate}
+
+\end{document}

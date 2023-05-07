@@ -1,0 +1,182 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Similar triangle 3}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In trapezoid below, F is the midpoint of $\overline{BC}$. $EF\parallel{AB}$. If AB=6, EF=5, what is the length of CD?
+
+Follow up question: What if F is not the midpoint, but $CF:BF=2:1$?
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    point A=(0,0), B=(4,0), C=(3.3,3), D=(1,3);
+    draw(A--B--C--D--cycle);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+
+    point EE=(A+D)/2, F=(B+C)/2;
+
+    label("$E$",EE,W);
+    label("$F$",F,E);
+    draw(EE--F);
+\end{asy}
+
+\item In the square ABCD below, M is the midpoint of BC, AP:PB = 3:1. Prove that \\ $\triangle{MBP}\sim\triangle{DCM}$.
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    point A=(0,0), B=(4,0), C=(4,4), D=(0,4);
+    draw(A--B--C--D--cycle);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+    point M=midpoint(line(B,C));
+    point P=(A+B*3)/4;
+    draw(D--M--P);
+    label("$P$",P,S);
+    label("$M$",M, E);
+\end{asy}
+
+% 3
+\item In the diagram below, $\angle{ABC}=\angle{CDB}=90^\circ. BC=\sqrt{6}, CD=2$. What is the length of AC if $\triangle{ABC}\sim\triangle{CDB}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(3,5,4);
+    draw(t);label(t);
+
+    line k=rotate(-degrees(t.AC,t.BC),t.B)*t.BC;
+    point D=projection(k)*t.C;
+    draw(t.B--D--t.C);
+    label("$D$",D,E);
+    
+\end{asy}
+
+%4 
+\item In Diagram below, OP is a light pole and height is 30ft. A person with height 5 ft walks from point A to B. AO=40ft, BO=15ft. Does the person's shadow
+get shorter or longer? by how much?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point O=(0,0), P=(0,4), M=(7,0),Nx=(3,0);
+    line i=line((0,0.5), (1,0.5));
+    point B1=intersectionpoint(i, line(P,Nx));
+    point A1=intersectionpoint(i, line(P,M));
+    line x=line((0,0),(1,0));
+    point B=projection(x)*B1;
+    point A=projection(x)*A1;
+    pen xp=linewidth(3*bp);
+    draw(O--P, xp);
+    draw(P--M, dashed);
+    draw(P--Nx, dashed);
+    draw(A1--A,xp);
+    draw(B1--B,xp);
+    draw(O--M);
+    label("$O$",O,S);
+    label("$P$",P,N);
+    label("$M$",M,S);
+    label("$N$",Nx,SE);
+    label("$A$",A,S);
+    label("$B$",B,S);
+\end{asy}
+
+\pagebreak
+\item In $\triangle{ABC}$ below, $\angle{CAB}=\angle{CED}$. Prove that $\triangle{DOA}\sim\triangle{EOB}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,8,7);
+    draw(t);label(t);
+
+    point EE=(2*t.B+t.C)/3;
+
+    real b=degrees(t.AB,t.AC);
+    line k=rotate(b, EE)*line(t.C, EE);
+    point D=intersectionpoint(k, t.AC);
+
+    draw(t.A--EE);draw(t.B--D);draw(D--EE);
+    point O=intersectionpoint(line(t.B,D), line(t.A,EE));
+    label("$D$",D,W);
+    label("$O$",O,S);
+    label("$E$",EE,E);
+    markangle(t.B,t.A,t.C, radius=5mm);
+    markangle(t.C,EE,D, radius=5mm);
+\end{asy}
+
+\item In the diagram below, $CE:BE=1:2$. $BD\parallel{AC}$. The area of $\triangle{ACE}=1$,
+What is the area of $\triangle{ABD}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,3,4);
+    draw(t);label(t);
+
+    point EE=(t.C*2+t.B)/3;
+    line p=parallel(t.B,t.AC);
+    point D=intersectionpoint(p,line(t.A, EE));
+    draw(t.B--D--t.A);
+    label("$D$",D,N);
+    label("$E$",EE,NE);
+
+\end{asy}
+
+\item In the triangle below, $\angle{BCD}=\angle{A}$, CD=6, AC=8, AD=7, what is the length of BD?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(2.5,3.5,4);
+    draw(t);label(t);
+    line k=rotate(degrees(t.AC,t.AB), t.C)*t.BC;
+    point D=intersectionpoint(k, t.AB);
+    draw(t.C--D);
+    label("$D$",D,S);
+
+\end{asy}
+
+\item In the rectangle ABCD below, E is the midpoint of BC, $DF\perp{AE}$. AD=10, AB=12, what is the length of DF?
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    point A=(0,0), B=(5,0), C=(5,4), D=(0,4);
+    draw(A--B--C--D--cycle);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,N);
+    point M=midpoint(line(B,C));
+    point P=projection(line(A,M))*D;
+    draw(A--M);
+    draw(D--P);
+    label("$F$",P,NE);
+    label("$E$",M, E);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}
