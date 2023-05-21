@@ -1,0 +1,245 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Bisectors}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+\section{Concepts}
+\begin{enumerate}
+    \item The perpendicular bisectors of the sides of a triangle are concurrent at a point called the \textbf{circumcenter}
+    \item The angle bisector of a triagnel are concurrent at a point called the \textbf{incenter}. The point is equidistant from the sides of the triangle.
+    The incenter is the center of the inscribed circle.
+    \item The medians of a triangle are concurrent at the pointed called the \textbf{centroid} of the triangle.
+    \begin{enumerate}
+        \item The medians of a triangle divice the triangle into 6 little triangles with the same area
+        \item The centroid of a triangle cuts its medians into 2:1 ratio.
+    \end{enumerate}
+        
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,6,7);
+    draw(segment(t.AB), StickIntervalMarker(2,1,size=2mm,red));
+    draw(segment(t.BC), StickIntervalMarker(2,2,size=2mm,blue));
+    draw(segment(t.CA), StickIntervalMarker(2,3,size=2mm,green));
+    label(t);
+    line cc=bisector(t.AB);
+    line aa=bisector(t.BC);
+    line bb=bisector(t.AC);
+    draw(aa^^bb^^cc);
+    perpendicularmark(aa,t.BC);
+    perpendicularmark(bb,t.AC);
+    perpendicularmark(cc,t.AB,quarter=-1);
+    draw(circle(t));
+\end{asy}
+\begin{asy}
+    import geometry;
+    size(6cm);
+    triangle t=triangleabc(5,6,7);
+    draw(t);label(t);
+    line ba=bisector(t.VA), bb=bisector(t.VB);
+    line bc=bisector(t.VC); draw(ba^^bb^^bc);
+    markangle((line) t.AB, (line) t.AC, StickIntervalMarker(2,1,size=1mm,green), radius=4mm);
+    markangle((line) t.BC, (line) t.BA, StickIntervalMarker(2,2,size=1mm,blue), radius=4mm);
+    markangle((line) t.CA, (line) t.CB, StickIntervalMarker(2,3,size=1mm,red), radius=4mm);
+    draw(incircle(t));
+\end{asy}
+\begin{asy}
+    import geometry;
+    size(6cm);
+    triangle t=triangleabc(5,6,7);
+    draw(t);label(t);
+    draw(segment(t.AB), StickIntervalMarker(2,1,size=2mm,red));
+    draw(segment(t.BC), StickIntervalMarker(2,2,size=2mm,blue));
+    draw(segment(t.CA), StickIntervalMarker(2,3,size=2mm,green));
+    point Ma=midpoint(t.BC), Mb=midpoint(t.AC), Mc=midpoint(t.BA);
+    draw("$M_1$",Ma,-dir(t.VA)); draw("$M_2$",Mb,-dir(t.VB)); draw("$M_3$",Mc,-dir(t.VC));
+    draw(t.A--Ma^^t.B--Mb^^t.C--Mc, grey);
+\end{asy}
+
+\item The altitudes of a triangle are concurrent at the \textbf{orthocenter} of the triangle, which is usually denoted H.
+    
+\begin{asy}
+import geometry;
+size(5cm);
+triangle t=triangleabc(4,5,5);
+draw(t);label(t);
+point Ha=foot(t.BC), Hb=foot(t.AC), Hc=foot(t.AB);
+draw(t.C--Hc^^t.A--Ha^^t.B--Hb);
+markrightangle(t.A,Ha,t.B);
+markrightangle(t.B,Hb,t.C);
+markrightangle(t.C,Hc,t.B);
+
+\end{asy}
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(3,4,5);
+    draw(t);
+    label(t);
+    draw(segment(t.AB), StickIntervalMarker(2,1,size=2mm,red));
+    point p=midpoint(t.AB);
+    draw(t.C--p, StickIntervalMarker(1,1,size=2mm,red));
+    markrightangle(t.A,t.C,t.B);
+    draw(circle(t));
+\end{asy}
+
+\item Special property of right triangle.
+\begin{enumerate}
+    \item The circumcenter of right triangle is the midpoint of the hypotenuse, and the circumradius equals one half of the hypotenuse.
+    \item The centroid of a triangle cuts its medians into 2:1 ratio.
+\end{enumerate}
+
+\end{enumerate}
+
+%%%%%%% practice
+\pagebreak
+\section{Practice}
+\begin{enumerate}
+
+\item In the triangle blow, AO and BO are angle bisectors. $EF\parallel{AB}$. $OD\perp{BC}$. Which of the followings are correct?
+\begin{enumerate}
+    \item $EF=AE+BF$.
+    \item $\angle{AOB}=90^\circ+\cfrac{1}{2}\angle{C}$
+    \item The distance of O to all the 3 sides are equal.
+    \item The area of $[CEF]=\cfrac{1}{2}OD\cdot{(CE+CF)}$.
+\end{enumerate}
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,6,7);
+    draw(t);label(t);
+    line a=bisector(t.VA);
+    line b=bisector(t.VB);
+    point O=intersectionpoint(a,b);
+    draw(t.A--O--t.B);
+    line p=parallel(O,t.AB);
+    point EE=intersectionpoint(t.AC,p);
+    point F=intersectionpoint(t.BC,p);
+    draw(EE--F);
+    point D=projection(t.BC)*O;
+    draw(O--D);
+    label("$E$",EE,W);label("$F$",F,E);label("$O$",O,S);label("$D$",D,E);
+    markrightangle(O,D,t.C);
+\end{asy}
+
+% 2
+\item In the triangle below, AD and CE are angle bisectors. If $AD=AC$ and $CE=CB$, what is $\angle{B}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(4,6.5,7);
+    draw(t);label(t);
+    line a=bisector(t.VA);
+    line c=bisector(t.VC);
+    point D=intersectionpoint(a,t.BC);
+    point EE=intersectionpoint(c,t.AB);
+    draw(t.A--D);draw(t.C--EE);
+    label("$E$",EE,S);label("$D$",D,E);
+\end{asy}
+
+% 3
+\item $\odot O$ is the circumcicle of $\triangle{ABC}$, if $\angle{OAB}=30^\circ$, what is $\angle{C}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,6.5,7);
+    draw(t);label(t);
+    point O=circumcenter(t);
+    draw(circle(t));
+    draw(O--t.A);label("$O$",O,E);
+\end{asy}
+
+% 3
+\item In the triangle below, BE and AD are the heights. What is $\angle{AOB}+\angle{C}$?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(6,6.5,7);
+    draw(t);label(t);
+    point D=foot(t.BC);
+    point EE=foot(t.AC);
+    point O=intersectionpoint(line(t.A,D), line(t.B,EE));
+    draw(t.A--D^^t.B--EE);
+    label("$O$",O,S);
+    label("$D$",D,E);
+    label("$E$",EE,W);
+    markrightangle(t.A,D,t.C,size=2mm);
+    markrightangle(t.B,EE,t.C,size=2mm);
+\end{asy}
+
+
+\pagebreak
+%4 
+\item In the right $\triangle{ABC}$ below, $\angle{C}=90^\circ$. AC=4, BC=3. Find the radius of the inscribed circle $r$ and the circumscribed cicle $R$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(3,4,5);
+    draw(t);label(t);
+    draw(circle(t));
+    draw(incircle(t));
+    point O=circumcenter(t);
+    real p=2.5*sqrt(2)/2;
+    draw("$R$", O--(2.5+p,-p),red);
+    O=incenter(t);
+    point F=projection(t.BC)*O;
+    draw("$r$", O--F,red);
+\end{asy}
+
+
+\section{Review}
+\item In triangle ABC below, $\angle{ACB}=90^\circ$. $AC=BC$. $AD\perp{CE}$ and $BE\perp{CE}$. Prove that AD=DE+BE.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(4,4,4*sqrt(2));
+    draw(t);label(t);
+    point p=(3.8,0);
+    line l=line(p,t.C);
+    point D=projection(l)*t.A;
+    point EE=projection(l)*t.B;
+    draw(t.C--EE--t.B);draw(t.A--D);
+    label("$D$",D,E);label("$E$",EE,W);
+    markrightangle(t.A,D,t.C,size=2mm);
+    markrightangle(t.B,EE,t.C,size=2mm);
+\end{asy}
+
+\item In triangle ABC below, $\angle{B}=30^\circ$. $\angle{CDA}=45^\circ$, find $\angle{CAB}$.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point A=(0,0),B=(4,0);
+    line a=rotate(105)*line(A,B);
+    line b=rotate(-30,B)*line(A,B);
+    point C=intersectionpoint(a,b);
+    triangle t=triangle(A,B,C);
+    draw(t);label(t);
+    point D=(2,0);
+    draw(C--D);
+    label("$D$",D,S);
+    point X=projection(t.BC)*A;
+    draw(A--X,dashed);
+    markrightangle(A,X,C,size=2mm);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}

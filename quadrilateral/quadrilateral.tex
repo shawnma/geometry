@@ -1,0 +1,216 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Quadrilateral 1}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In the diamond $ABCD$ below, the side length is 2. $BD=2$. E and F are side AD and CD and satify $AE+CF=2$.
+\begin{enumerate}
+    \item What is the shape of BEF?
+    \item What is the minimum area of $\triangle{BEF}$?
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(-sqrt(3),0),B=(0,-1),C=(sqrt(3),0),D=(0,1);
+    draw(A--B--C--D--A);
+    draw(B--D);
+    coordsys r=shift(sqrt(3))*rotate(150)*currentcoordsys;
+    point F=point(r,(0.7,0));
+    draw(B--F);
+    r=shift(0,1)*rotate(30)*currentcoordsys;
+    point EE=point(r,(-0.7,0));
+    draw(B--EE--F);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,NW);
+    label("$F$",F,NE);
+
+\end{asy}
+
+\item In a parallelogram $ABCD$, AE bisects $\angle{A}$.
+\begin{enumerate}
+    \item Prove that CE=CF.
+    \item If $ABCD$ is a rectangle, G is the midpoint of EF, what is degree of the angle of $\angle{BDG}$?
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(-0.3,1.3),B=(0,0),C=(2,0),D=(1.7,1.3);
+    draw(A--B--C--D--A);
+    line p=bisector(line(A,B),line(A,D));
+    point EE=intersectionpoint(p,line(B,C));
+    point F=intersectionpoint(p,line(C,D));
+    draw(A--F--C);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,NE);
+    label("$F$",F,E);
+\end{asy}
+\qquad
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(0,1.3),B=(0,0),C=(2,0),D=(2,1.3);
+    draw(A--B--C--D--A);
+    line p=bisector(line(A,B),line(A,D));
+    point EE=intersectionpoint(p,line(B,C));
+    point F=intersectionpoint(p,line(C,D));
+    draw(A--F--C);
+    point G=midpoint(line(EE,F));
+    draw(B--G--C,dashed);
+    draw(B--D--G);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,NE);
+    label("$F$",F,E);
+    label("$G$",G,SW);
+\end{asy}
+
+% 3
+\item In the parallelogram ABCD below, $BF\perp{AD}$, $BE\perp{CD}$, CE=2 and DF=1, $\angle{FBE}=60^\circ$. Find the area of ABCD.
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(0,0),B=(3,0),C=(4,sqrt(3)),D=(1,sqrt(3));
+    draw(A--B--C--D--A);
+    point EE=projection(line(C,D))*B;
+    point F=projection(A,D)*B;
+    draw(B--F);draw(B--EE);
+    markrightangle(B,EE,C);
+    markrightangle(A,F,B);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,N);
+    label("$F$",F,W);
+\end{asy}
+
+%4 
+\item In the parallelogram below, O is the intersection point of AC and BD. $FO\perp{BD}$. If the perimeter of $\triangle{ABF}=a$, what is perimeter of
+$ABCD$?
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(-0.3,1.3),B=(0,0),C=(2,0),D=(1.7,1.3);
+    draw(A--B--C--D--A);
+    draw(A--C);draw(B--D);
+    point O=intersectionpoint(line(A,C),line(B,D));
+    line k=perpendicular(O,line(B,D));
+    point F=intersectionpoint(k,line(A,D));
+    draw(B--F--O);
+    markrightangle(F,O,D);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$F$",F,N);
+    label("$O$",O,S);
+\end{asy}
+
+\pagebreak
+
+\item In the rectangle below, the side lengths are $a$ and $b$. $S_x$ are the areas of the triangles and $S_1=S_2=\cfrac{1}{2}(S_3+S_4)$.
+Find $S_4$ in terms of $a$ and $b$.
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(0,1.3),B=(0,0),C=(2,0),D=(2,1.3);
+    draw(A--B--C--D--A);
+    point EE=midpoint(line(C,D));
+    point F=midpoint(line(B,C));
+    draw(A--F--EE--A);
+    draw("$S_1$",(0.3,0.3));
+    draw("$S_2$",(1.5,1));
+    draw("$S_3$",(1.7,0.2));
+    draw("$S_4$",(1.1,0.5));
+    draw("$a$",A--D,N);
+    draw("$b$",A--B);
+\end{asy}
+
+\item Diamond ABCD below has a side length of 2, $\angle{DAB}=60^\circ$. E is the midpoint of AB, F is on AC. What is the minimal value of $FE+BF$?
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(-sqrt(3),0),B=(0,-1),C=(sqrt(3),0),D=(0,1);
+    draw(A--B--C--D--A);
+    draw(A--C);
+    point EE=midpoint(line(A,B));
+    point F=(-1,0);
+    draw(B--F--EE);
+    label("$A$",A,W);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,S);
+    label("$F$",F,NE);
+
+\end{asy}
+
+\item In the diagram below, $\angle{A}=\angle{C}$. $AA_1$, $BB_1$, $CC_1$ are all perpendicular to $A_1C_1$. $AA_1=7$, $BB_1=6$, $CC_1=10$ and $A_1C_1=12$. Find $AB+BC$.
+
+\begin{asy}
+    import geometry;
+    size(0,6cm);
+    point A1=(0,0),A=(0,7);
+    point B1=(12/5,0),B=(12/5,6);
+    point C1=(12,0),C=(12,10);
+    draw(A1--A--B--C--C1--A1);
+    draw(B1--B);
+    label("$A_1$",A1,S);
+    label("$B_1$",B1,S);
+    label("$C_1$",C1,S);
+    label("$A$",A,N);
+    label("$B$",B,N);
+    label("$C$",C,N);
+\end{asy}
+
+\item In the right triangle ABC below, $\angle{B}=90^\circ$, $\angle{BCA}=54^\circ$. $AD\parallel{BC}$, $DF=2AC$. what is $\angle{BCF}$? (This is a review problem of right triangle.)
+
+\begin{asy}
+    import geometry;
+    size(0,4cm);
+    point A=(0,0),B=(0,2);
+    line k=rotate(-36)*line(A,B);
+    point C=intersectionpoint(k,line(B,(1,2)));
+    draw(A--B--C--A);
+    point D=(-2*length(C),0);
+    draw(A--D--C);
+    point F=intersectionpoint(line(C,D),line(A,B));
+    label("$A$",A,S);
+    label("$B$",B,N);
+    label("$C$",C,E);
+    label("$D$",D,S);
+    label("$F$",F,SE);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}

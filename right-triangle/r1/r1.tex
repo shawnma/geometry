@@ -1,0 +1,127 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Right triangle 1}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In the right $\triangle$ blow, $\angle{C}=90^\circ$. $a, b, c$ are the length of BC, AC and AB. $a:c=3:5$, $b=32$, find $a, c$.
+
+\begin{asy}
+    import geometry;
+    size(4cm);
+    triangle t=triangleabc(3,4,5);
+    draw(t);label(t);
+    draw("$a$",t.B--t.C);
+    draw("$b$",t.A--t.C);
+    draw("$c$",t.A--t.B);
+\end{asy}
+
+\item A triangle has 3 sides of $a,b,c$. They satisfy $|a-\sqrt{7}|+\sqrt{b-5}+(c-4\sqrt{2})^2=0$. Is it a right triangle?
+
+% 3
+\item In the right triangle below, $\angle{A}=90^\circ$. BD=10, what is AC?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangle((0,0),(sqrt(3),0),(0,1));
+    draw(t);label(t);
+    point D=(1,0);
+    draw(t.C--D);
+    draw("$D$",D, S);
+    markangle("$45^\circ$",t.C,D,t.A);
+    markangle("$30^\circ$",t.C,t.B,t.A);
+    
+\end{asy}
+
+%4 
+\item In the right $\triangle{OXY}$ below, $\angle{O}=90^\circ$. M, N are the midpoints of OX, OY.
+XN=19 and YM=22, find XY.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    point O=(0,0);
+    point X=(4,0);
+    point Y=(0,3);
+    point M=(O+X)/2;
+    point NN=(O+Y)/2;
+    draw(O--X--Y--O);
+    draw(X--NN);
+    draw(Y--M);
+    label("$O$",O,S);
+    label("$X$",X,S);
+    label("$Y$",Y,N);
+    label("$M$",M,S);
+    label("$N$",NN,W);
+\end{asy}
+
+\item The diagram below shows a rectangle with side lengths $4$ and $8$ and a square with side length $5$. Three vertices of the square lie on three different sides of the rectangle, as shown. What is the area of the region inside both the square and the rectangle?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    filldraw((4,0)--(8,3)--(8-3/4,4)--(1,4)--cycle,mediumgray);
+    draw((0,0)--(8,0)--(8,4)--(0,4)--cycle,linewidth(1.1));
+    draw((1,4)--(4,0)--(8,3)--(5,7)--(1,4),linewidth(1.1));
+    draw((1,0)--(1,4),dashed);
+    label("$4$", (8,2), E);
+    label("$8$", (4,0), S);
+    label("$5$", (3,11/2), NW);
+    //draw((1,.35)--(1.35,.35)--(1.35,0),linewidth(1.1));
+\end{asy}
+
+
+
+\pagebreak
+\item In triangle ABC, $CA=CB$. $AB=\sqrt{3}-1$ and $\angle{C}=30^\circ$. Find BC.
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(2,2,sqrt(3)-0.8);
+    draw(t);label(t);
+\end{asy}
+
+\item In the triangle ABC, AB=6, BC=8. Find AC in each of the following cases:
+\begin{enumerate}
+    \item $\angle{B}=30^\circ$
+    \item $\angle{B}=45^\circ$
+    \item $\angle{B}=135^\circ$
+\end{enumerate}
+
+\item In triangle RST, $RS=13, ST=14, RT=15$.
+\begin{enumerate}
+    \item Find the length of the height from R to ST. (Hint: Heron's thereom, \\ $S=\sqrt{s(s-a)(s-b)(s-c)}$ where $s=\cfrac{a+b+c}{2}$).
+    \item M is the midpoint of ST, find the length of RM.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(15,13,14);
+    draw(t);label(t,LA="$S$",LB="$T$",LC="$R$");
+    point m =foot(t.AB);
+    draw(t.C--m);
+    label("$H$",m,S);
+    m=midpoint(t.AB);
+    draw(t.C--m);
+    label("$M$",m,S);
+\end{asy}
+\end{enumerate}
+
+\end{document}
