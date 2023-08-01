@@ -1,0 +1,194 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Circle1 1}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In the diagram below. AB is the diameter of the semicircle with a radius of $\sqrt{5}$. $BC=CD$.
+\begin{enumerate}
+    \item Prove that $\triangle{AED}$ is a right isosceles triangle.
+    \item Find the length of $\overset{\frown}{CE}$.
+    \item if $BD=DE$, find the length of $\overline{BC}$.
+\end{enumerate}
+
+
+\begin{asy}
+    import geometry;
+    size(0,3.5cm);
+    point A=(-5,0), B=(5,0);
+    arc a = arcsubtended(A, B, 90);
+    point C=relpoint(a, 1/4.5);
+    draw(a);
+    draw(A--B);
+    draw(A--C--B);
+    coordsys r=rotate(180/9, C)*cartesiansystem(C,E,N);
+    real l = length(B-C);
+    point D=point(r,(-l,0.0));
+    point DD=changecoordsys(currentcoordsys, D);
+    line BD=line(B,DD);
+    point[] EES=intersectionpoints(BD, a);
+    point EE=EES[1];
+    draw(B--EE);
+    draw(A--EE--origin--C);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,E);
+    label("$D$",D,N);
+    label("$E$",EE,W);
+    dot("$O$",origin,S);
+\end{asy}
+
+\item In the circle $O$ below, AF is tangent to the circle. $\overline{AC}=\overline{CD}$. H is a point such that $OH\perp{DH}$ and $CD\perp{DH}$.
+\begin{enumerate}
+    \item Prove that $\angle{CAF}=\angle{CAD}$.
+    \item Prove that $\overline{DH}=\cfrac{1}{2}\overline{BC}$.
+    \item if the radius of the circle is 10 and $\overline{OH}=6$, find the length of DE.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(0,7cm);
+    point A=(-5,0), B=(5,0);
+    circle a = circle(A, B);
+    real angle=degrees(asin(3/5))*2;
+    point C=relpoint(a, (180-angle)/360);
+    draw(a);
+    draw(A--B);
+    draw(A--C--B);
+    point D=relpoint(a, (180-angle*2)/360);
+    draw(C--D--A);
+    line t=line(A, (-5,1));
+    point F=intersectionpoint(t, line(C,B));
+    draw(A--F--C);
+    label("$A$",A,W);
+    label("$B$",B,E);
+    label("$C$",C,N);
+    label("$D$",D,NE);
+    label("$F$",F,W);
+    label("$O$",origin,S);
+    dot("$O$",origin,S);
+    line h=parallel(origin,line(D,C));
+    point H=projection(h)*D;
+    draw(D--H--origin);
+    label("$H$",H,S);
+    markrightangle(origin,H,D);
+    markrightangle(C,D,H);
+    point EE=intersectionpoint(line(A,D), line(B,C));
+    label("$E$",EE,N);
+\end{asy}
+
+% 3
+\item The $\odot{O}$ is the circumcircle of $\triangle{ABC}$. $AB=AC=4$. CD is the diameter of the circle and
+D is the midpoint of $\overset{\frown}{AB}$. Find the length of $\overline{BC}$ and the radius of the circle.
+
+\begin{asy}
+ import geometry;
+    size(0,5cm);
+    point A=(0,5), B=(-5/sqrt(3),0),C=(5/sqrt(3),0);
+    circle a = circle(A, B, C);
+    draw(a);
+    draw(A--B--C--A);
+    point[] pp = intersectionpoints(a,line(a.C, C));
+    point D=pp[1];
+    draw(D--C);
+    label("$A$",A,N);
+    label("$B$",B,SW);
+    label("$C$",C,SE);
+    label("$D$",D,W);
+    dot("$O$",a.C,S);
+
+\end{asy}
+
+\pagebreak
+%4 
+\item In the circle below, AB is the diameter. FC is tangent to the circle at C. $CE\perp{AB}$ and E is the midpoint of AO.
+P is a point on $\overset{\frown}{AC}$.
+\begin{enumerate}
+    \item Prove that $CE^2=EO\cdot{EF}$.
+    \item Find $\cfrac{PF}{PE}$.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(-5,0), B=(5,0);
+    circle a = circle(A, B);
+    real angle=30*2;
+    point C=relpoint(a, (180-angle)/360);
+    draw(a);
+    draw(A--B);
+    line t = tangent(a,C);
+    point F=intersectionpoint(t,line(A,B));
+    draw(A--F--C);
+    dot("$O$",a.C,S);
+    point EE=projection(line(A,B))*C;
+    draw(C--EE);
+    label("$A$",A,SW);
+    label("$B$",B,E);
+    label("$C$",C,N);
+    label("$E$",EE,S);
+    label("$F$",F,W);
+    markrightangle(C,EE,B);
+    point P=relpoint(a, (180-angle/3)/360);
+    draw(F--P--EE);
+    label("$P$",P,E);
+\end{asy}
+
+\item $\odot{M}$ is centered at $M(-1,0)$ and intersects with the axis at A,B,C,D respectively. Line EF is $y=-\cfrac{\sqrt{3}}{3}x-\cfrac{5\sqrt{3}}{3}$ and tangents with
+the circle at H.
+\begin{enumerate}
+    \item Find the length of OE, the radius of $\odot{M}$ and length of CH.
+    \item Q is a point on the circle and intersects x-axis at P. $PD:PH=\sqrt{3}:1$. Find $\angle{CHQ}$.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    import graph;
+    size(0,6cm);
+    axes(xlabel="x",ylabel="y",arrow=Arrow);
+    point C=(-3,0),D=(1,0);
+    circle c=circle(C,D);
+    draw(c);
+    point EE=(-5,0),F=(0,-5*sqrt(3)/3);
+    line k=line(EE,F);
+    draw(k);
+    draw(EE--F);
+    point[] H=intersectionpoints(k,c);
+    dot("$H$",H[0],SW);
+    addMargins(5mm,5mm);
+    dot("$M$",c.C,S);
+    point[] ab=intersectionpoints(line(origin, (0,1)), c);
+    point A=ab[0];
+    point B=ab[1];
+    label("$A$",A,SE);
+    label("$B$",B,NE);
+    label("$C$",C,NW);
+    label("$D$",D,NE);
+    label("$E$",EE,S);
+    label("$F$",F,E);
+    draw(C--H[0]);
+    real angle=35*2;
+    point Q=relpoint(c, (180-angle)/360);
+    draw(Q--H[0]);
+    label("$Q$",Q,N);
+    point P=intersectionpoint(line(Q,H[0]),line(c.C,origin));
+    label("$P$",P,SE);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}
