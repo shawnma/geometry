@@ -1,0 +1,82 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Similar triangle 1}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+\item In $\triangle{ABC}$ below, $\angle{A}=\angle{B}=\angle{DCE}$. Prove that 
+\begin{enumerate}
+    \item $\triangle{ACE}\sim\triangle{BDC}.$
+    \item If $\angle{ACB}=90^\circ$, prove that $AB^2=2\cdot AE\cdot BD$.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,5,5*sqrt(2));
+    point D=(1.5,0);
+    draw(t);label(t);
+    draw(t.C--D);
+    label("$D$",D,S);
+    real b=degrees(t.AB,t.AC);
+    line k=rotate(b, t.C)*line(t.C, D);
+    point EE=intersectionpoint(k, t.AB);
+    draw(t.C--EE);
+    label("$E$",EE,S);
+\end{asy}
+
+\item In $\triangle{ABC}$ below, D is the midpoint of BC. $\angle{ACB}=\angle{CED}$. Prove that 
+\begin{enumerate}
+    \item $DC^2=DE\cdot{AD}$
+    \item $\angle{DBE}=\angle{DAB}$.
+\end{enumerate}
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,6,7);
+    point D=midpoint(t.BC);
+    draw(t);label(t);
+    draw(t.A--D);
+    label("$D$",D,E);
+    
+    point EE=(3*D+t.A)/4;
+    draw(t.B--EE--t.C);
+    label("$E$",EE,NW);
+\end{asy}
+
+\item In $\triangle{ABC}$ below, $\angle{A}=\angle{B}=\angle{EDF}$.
+If AD=2, AB=6, BF=3, what is the length of AE?
+
+\begin{asy}
+    import geometry;
+    size(5cm);
+    triangle t=triangleabc(5,5,6);
+    point D=(2,0);
+    draw(t);label(t);
+    point F=midpoint(t.BC);
+    draw(F--D);
+    line k = rotate(sharpdegrees(t.BC,t.AB), D)*line(F,D);
+    point EE=intersectionpoint(k, t.AC);
+    label("$D$",D,S);
+    draw(EE--D);
+    label("$E$",EE,NW);
+    label("$F$",F,NE);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}
