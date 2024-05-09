@@ -1,0 +1,191 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Circle1 1}
+
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+%\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\begin{enumerate}
+
+\item In the semicircle below, AB is the diameter and O is the center. D is the midpoint of $\overset{\frown}{AC}$.
+$DE\perp{AB}$. Prove that $2\cdot{DE}=AC$.
+
+
+\begin{asy}
+    import geometry;
+    size(0,3.5cm);
+    point A=(-5,0), B=(5,0);
+    arc a = arcsubtended(A, B, 90);
+    point C=relpoint(a, 1/4);
+    point D=relpoint(a,2.5/4);
+    point EE=projection(line(A,B))*D;
+    draw(a);
+    draw(A--B);
+    draw(A--C);
+    draw(D--EE);
+
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,NE);
+    label("$D$",D,N);
+    label("$E$",EE,S);
+    dot("$O$",origin,S);
+\end{asy}
+
+\item Two circles share the same center at $O$. A line intersects them at A,B,C,D. Assume the
+radius of the big circle is $5$ and the smaller circle is $3$, what is $AD\cdot{BD}$?
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(-5,0), B=(5,0);
+    circle a = circle(A, B);
+    circle b = circle((-3,0),(3,0));
+    draw(a);draw(b);
+    line k=line((-1,2),(1,2));
+    point[] pa =intersectionpoints(k,a);
+    point[] pb =intersectionpoints(k,b);
+    label("$A$",pa[0],W);
+    label("$B$",pa[1],E);
+    label("$C$",pb[0],NW);
+    label("$D$",pb[1],NE);
+    draw(pa[0]--pa[1]);
+    dot("$O$",origin,S);
+
+\end{asy}
+
+% 3
+\item $BC$ is the diameter of $\odot{O}$. The radius of the circle is $\cfrac{3}{2}$. $BH\perp{AD}$. $\overline{AB}=2$. What is $\cfrac{BH}{BD}$?
+
+\begin{asy}
+ import geometry;
+    size(0,5cm);
+    point A=(sqrt(5),0), B=(sqrt(5),2),C=(0,0);
+    circle a = circle(A, B, C);
+    draw(a);
+    draw(A--B--C);
+    point D=relpoint(a, 1/2);
+    point H=projection(line(D,A))*B;
+    draw(H--B);
+    markrightangle(B,H,D);
+    draw(B--D--A);
+    label("$A$",A,SE);
+    label("$B$",B,NE);
+    label("$C$",C,SW);
+    label("$D$",D,W);
+    label("$H$",H,S);
+    dot("$O$",a.C,S);
+
+\end{asy}
+
+%4 
+\item In the circle below, AB is the diameter. Line $CD$ intersects the circle at $E$, $F$. $AC$ and $BD$ are perpendicular to $CD$.
+Prove that $CE$ = $FD$.
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(-5,4), B=(5,1);
+    circle a = circle(A, B);
+    point C=(-5,-2), D=(5,-2);
+    line k=line(C,D);
+    point[] pa=intersectionpoints(a,k);
+
+    draw(a);
+    draw(A--B--D--C--A);
+    dot("$O$",a.C,S);
+    label("$A$",A,W);
+    label("$B$",B,E);
+    label("$C$",C,S);
+    label("$D$",D,S);
+    label("$E$",pa[0],S);
+    label("$F$",pa[1],S);
+    markrightangle(A,C,D);
+    markrightangle(B,D,C);
+\end{asy}
+
+\item AB is the diameter of $\odot{O}$. BC is tangent to $\odot{O}$ at B. BD intersects $\odot{O}$ at E and AB at F.
+AF=2, DF=3, EF=6. Find $\overline{CE}$.
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(0,5), B=(0,-5);
+    circle a = circle(A, B);
+    point C=(7,-5), D=relpoint(a, 5.7/18);
+    line k=line(C,D);
+    point[] pa=intersectionpoints(a,k);
+    point F=intersectionpoint(k, line(A,B));
+
+    draw(a);
+    draw(A--B--C--D);
+    dot("$O$",a.C,W);
+    label("$A$",A,N);
+    label("$B$",B,S);
+    label("$C$",C,S);
+    label("$D$",D,NW);
+    label("$E$",pa[0],E);
+    label("$F$",F,E);
+\end{asy}
+
+\item ABCD is a parallelogram. The $\odot{O}$ is the circumscribed circle of A,B,C. CD is tangent to the circle.
+AB=4, BE=5. Find $\overline{DE}$.
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(-2,0), B=(2,0), C=(0,5), D=(-4,5);
+    circle a = circle(A, B, C);
+
+    draw(a);
+    draw(A--B--C--D--A);
+
+    point[] p=intersectionpoints(a,line(A,D));
+    draw(p[1]--B);
+    dot("$O$",a.C,W);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,NW);
+    label("$E$",p[1],W);
+\end{asy}
+
+\item ABCD is a square. Semicircle $\odot{O}$ has AB as its diameter. DF tangents $\odot{O}$ at E. BF=4. Find $\cfrac{AF}{DF}$ and the length of BE.
+
+\begin{asy}
+    import geometry;
+    size(0,5cm);
+    point A=(-2,0), B=(2,0), C=(2,4), D=(-2,4);
+    arc a = arcsubtended(A, B, 90);
+    circle c=circle(A,B);
+    draw(a);
+    draw(A--B--C--D--A);
+
+    line t=tangents(c,D)[1];
+    point F=intersectionpoint(t, line(A,B));
+    draw(B--F--D);
+    point EE=intersectionpoints(a,t)[0];
+    draw(B--EE);
+    dot("$O$",c.C,S);
+    label("$A$",A,S);
+    label("$B$",B,S);
+    label("$C$",C,N);
+    label("$D$",D,NW);
+    label("$E$",EE,NE);
+    label("$F$",F,S);
+\end{asy}
+
+\end{enumerate}
+
+\end{document}
