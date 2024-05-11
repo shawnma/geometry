@@ -1,0 +1,42 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{asymptote}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+\usepackage{graphicx}
+\usepackage{enumitem}\newsavebox\fnbox
+\def\pageanswers{}
+\newcounter{problemNo}
+\makeatletter
+\newcommand\problem[3][\relax]{%
+  \stepcounter{problemNo}%
+  \par\smallskip%
+  \theproblemNo.~~#2%
+  \vspace{3cm}%
+  \protected@edef\pageanswers{\pageanswers$^{\theproblemNo}$#3\ \quad}%
+  \showpageanswers%
+}
+\makeatother
+\newcommand\showpageanswers{
+  \revfootnote{\pageanswers}\def\pageanswers{}}
+\newcommand\revfootnote[1]{\renewcommand{\thefootnote}{}%
+  \footnotetext{\savebox\fnbox{\parbox{%
+  \dimexpr\textwidth}{#1\strut}}\kern-18pt%
+  \rotatebox{180}{\usebox{\fnbox}}}}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+%不要自动缩进
+\setlength{\parindent}{0pt}
+\problem{Calculate $\sin163^\circ\sin223^\circ+\sin253^\circ\sin323^\circ=$}{$\cfrac{1}{2}$}
+\problem{$\sin^21^\circ+\sin^22^\circ+\sin^23^\circ+\dots+\sin^289^\circ=$}{44.5}
+\problem{Given $\sin\alpha-\sin\beta=a, \cos\alpha-\cos\beta=b$, find $\cos(\alpha-\beta)$.}{$\cfrac{2-a^2-b^2}{2}$}
+\problem{Simplify $\cfrac{2\cos^2\alpha-1}{2\tan(\cfrac{\pi}{4}-\alpha)\sin^2(\cfrac{\pi}{4}+\alpha)}$}{1}
+\problem{If $\cfrac{1+\tan x}{1-\tan x}=2010$, find $\cfrac{1}{\cos 2x}+\tan 2x$.}{?}
+
+\end{document}
