@@ -1,0 +1,163 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{parabola, ellipse and hyperbola}
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+%\usepackage{floatrow}
+\usepackage{geometry}
+\usepackage{multicol}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+\item An ellipse is centered at origin $O$ and its foci are on the x-axis.
+It intersects with line $x+y-1=0$ at point A and B. M is the center of $\overline{AB}$.
+The slope of $OM$ is $\cfrac{1}{4}$. The short axis of the ellipse is 2.
+Find the equation of the ellipse.
+
+\item If the coordinates of two vertices of $\triangle{ABC}$ are $A(-4,0)$
+ and $B(4,0)$, and the perimeter of $\triangle{ABC}$
+ is 18, find the equation of the trajectory of vertex C.
+
+\item Given the equation of an ellipse as $\cfrac{x^2}{a^2}+\cfrac{y^2}{25}=1(a>5)$. Its
+foci are $F_1$, $F_2$ and $F_1F_2=8$. Chord $AB$ passes through $F_1$. Find the perimeter
+of $\triangle{ABF_2}$.
+
+\item Let $F_1$ and $F_2$ be the foci of the ellipse $\cfrac{x^2}{9}+\cfrac{y^2}{4}=1$,
+P be a point on the ellipse, and $PF_1:PF_2 = 2:1$. Find the area of $\triangle{PF_1F_2}$.
+
+\item Given ellipse $\cfrac{x^2}{2}+y^2=1$, chord $AB$ cross point $P(\cfrac{1}{2},\cfrac{1}{2})$ and
+$AP=BP$. Find the equation of line AB.
+
+\item If the line $y=kx-2$ intersects with parabola $y^2=8x$ at A,B and the x axis of the midpoint of $AB$ is 2. Find the equation of the line.
+\item Parabola $y^2=4x$ intersects with line $y=2x+k$ at A,B. The chord $AB$ has a length of $3\sqrt5$. Find the value of $k$.
+\item Point M is at (3,2). F is the focus point of parabola $y^2=2x$. P is a point on the parabola.
+What is the coordinates of P when $|PM|+|PF|$ has the minimum value?
+\item Given ellipse $\cfrac{x^2}{a^2}+\cfrac{y^2}{b^2}=1(a>b>0)$ has foci of $(\pm\sqrt2,0)$.
+The left and right vertex of the ellipse are A and B. Point P is on the ellipse. The slope of
+AP and BP are $k_1$ and $k_2$ respectively and $k_1k_2=-\cfrac{1}{2}$. Find the
+equation of the ellipse.
+\item An ellipse $\cfrac{x^2}{a^2}+\cfrac{y^2}{b^2}=1(a>b>0)$ has foci of $F_1,F_2$. Point $A(\cfrac{2\sqrt3}{3},\sqrt2)$
+is on the ellipse. The area of $\triangle{AF_1F_2}$ is $\sqrt2$. Find the equation of the ellipse.
+\item A and B are two points on the parabola $y=\cfrac{x^2}{4}$. The sum of the x axis coordinates of A and B is 4. Find the slope of the line AB.
+\item Given parabola $y^2=2x$ and a line $l$ passes through point $(2,0)$. $l$ intersects the parabola at A, B.
+Circle M is a circle with AB as its diameter. Prove that circle M passes through the origin.
+\item The eccentricity of a conic section is a number that measures how much its shape deviates from a perfect circle.
+It has a general form of $e=\cfrac{c}{a}$. Given ellipse $\cfrac{x^2}{a^2}+\cfrac{y^2}{b^2}=1(a>b>0)$ with an
+eccentricity of $\cfrac{\sqrt{2}}{2}$, and point $N(2,0)$ is the right vertex.
+\begin{enumerate}
+    \item Find the standard equation of the ellipse.
+    \item Line $l$ passes through point $H(0,2)$ and intersects the ellipse at A, B.
+    The sum of the slope of line $NA$ and $NB$ is $-\cfrac{1}{3}$. Find the equation for $l$.
+
+    \begin{asy}
+        size(7cm,0);
+    import geometry;
+    import graph;
+    draw(box((-3,-3),(3,3)), invisible);
+    xaxis(arrow=Arrow);
+    yaxis(arrow=Arrow);
+    point f=(sqrt(2),0), f2=(-sqrt(2),0);
+    ellipse e = ellipse(f, f2, (2,0));
+    draw(e);
+    point h=(0,2),n=(2,0);
+    line l=line(h, (-1,0));
+    point[] ab=intersectionpoints(l,e);
+    draw(ab[0]--n--ab[1], dashed);
+    dot("$N$",n,NE);
+    dot("$H$",h);
+    dot("$A$",ab[0],W);
+    dot("$B$",ab[1],NW);
+    draw("$l$",l);
+    \end{asy}
+\end{enumerate}
+\end{enumerate}
+
+\pagebreak
+\section{Answer keys}
+\begin{enumerate}
+    \item $\cfrac{x^2}{4}+y^2=1$
+    \item $\cfrac{x^2}{25}+\cfrac{y^2}{9}=1(y\neq 0)$
+    \item $4\sqrt{41}$
+    \item 4. Note $\triangle{PF_1F_2}$ is a right triangle. $Area = \cfrac{1}{2}\times2\times4$.
+    \item Let the slope of the line to be $k$. The equation will be $y-\cfrac{1}{2}=k(x-\cfrac{1}{2})$.\\
+        substitute into the ellipse equation, we'll get\\
+        \[(2k^2+1)x^2-(2k^2-2k)x+\cfrac{1}{2}k^2-k+\cfrac{3}{2}=0\]\\
+        $\therefore x_1+x_2=\cfrac{2k^2-2k}{2k^2+1}$.\\
+        $\because$ P is the center of AB \\
+        $\therefore x_1+x_2=1$.\\
+        $\therefore k=-\cfrac{1}{2}$\\
+        $\therefore y=-\cfrac{1}{2}x+\cfrac{3}{4}$.
+    \item Similar to the one above, combine the two equations we'll get
+    $k^2x^2-(4k+8)x+4=0$. $\therefore x_1+x_2=\cfrac{4k+8}{k^2}=4$ \\ $k=2$ or $k=-1$ (invalid).
+    \item Combine them we get $4x^2+(4k-4)x+k^2=0$.\\
+    $\therefore x_1+x_2=1-k, x_1\cdot x_2=\cfrac{k^2}{4}$.\\
+    $\therefore |AB|=\sqrt{(1+2^2)(x_1-x_2)^2}=\sqrt{5[\cdot{(x_1+x_2)^2-4x_1x_2}]}=\sqrt{5[\cdot{(1-k)^2-k^2}]}=3\sqrt{5}$\\
+    $k=-4 $ (The slope of AB is 2, so the length of AB is $(x_1-x_2)\times\sqrt5$).
+    \item By definition, PF=PK. so the minimum value of $PM+PF=PM+PK \geq MK$. The minimum value is P is on the line of MK
+    so P,M,K are on the same line, perpendicular to the directrix. The y value of P will be 2. P=(2,2).
+
+    \begin{asy}
+    size(4cm,0);
+import geometry;
+import graph;
+draw(box((-2,-3),(4,3)), invisible);
+xaxis(arrow=Arrow);
+yaxis(arrow=Arrow);
+point f=(0.5,0.0);
+line d = line((-0.5,0),(-0.5,1));
+parabola p = parabola(f, d);
+draw(p);
+point m=(3,2);
+dot("$M$", m);
+draw(d,dashed);
+dot("$F$",f,SE);
+point p=(1,sqrt(2));
+dot("$P$",p,SE);
+draw(p--f);
+draw(p--m);
+point k=projection(d)*p;
+draw(p--k);
+dot("$K$",k,W);
+draw(m--k);
+\end{asy}
+\item Let $P(x_0,y_0)$.
+\begin{align*}
+    k_1k_2&=\cfrac{y_0}{x_0-a}\cdot \cfrac{y_0}{x_0+a}\\
+    &=\cfrac{{y_0}^2}{{x_0}^2-a^2} \\
+    &=\cfrac{b^2(1-\cfrac{{x_0}^2}{a^2})}{{x_0}^2-a^2} \\
+    &=-\cfrac{b^2}{a^2}
+\end{align*}
+Also c=$\sqrt2$. we could get $a=2, b=\sqrt2$. The equation is $\cfrac{x^2}{4}+\cfrac{y^2}{2}=1$
+\item  $\cfrac{x^2}{4}+\cfrac{y^2}{3}=1$
+\item ...
+\item All we need to prove is that $\triangle{ABO}$ is a right triangle.
+Let A=$(\cfrac{1}{2}{y_0}^2,y_0)$, B=$(\cfrac{1}{2}{y_1}^2,y_1)$.
+Passing through $(2,0)$ means the slopes are the same:\\
+\begin{align*}
+\cfrac{y_0}{\cfrac{1}{2}{y_0}^2-2}&=\cfrac{y_1}{\cfrac{1}{2}{y_1}^2-2}\\
+\cfrac{1}{2}{y_0}{y_1}^2-2{y_0}&=\cfrac{1}{2}{y_0}^2y_1-2y_1\\
+\cfrac{1}{2}y_0y_1(y_1-y_0)+2(y_1-y_0)&=0\\
+y_0y_1&=-4\\
+AO^2+BO^2&={(\cfrac{1}{2}{y_0}^2)}^2+{y_0}^2+{(\cfrac{1}{2}{y_1}^2)}^2+{y_1}^2\\
+AB^2&={(\cfrac{1}{2}{y_0}^2-\cfrac{1}{2}{y_1}^2)}^2+(y_0-y_1)^2\\
+&={(\cfrac{1}{2}{y_0}^2)}^2+{y_0}^2+{(\cfrac{1}{2}{y_1}^2)}^2+{y_1}^2-\cfrac{1}{2}y_0^2y_1^2-2y_0y_1\\
+&=AO^2+BO^2
+\end{align*}
+\item \begin{enumerate}
+    \item $\cfrac{x^2}{4}+\cfrac{y^2}{2}=1$
+    \item Let $l$ be $y=kx+2$. Together with the ellipse equation, we have
+    \[(2k^2+1)x^2+8ks+4=0\]
+    Let $A(x_1,y_1)$, $B(x_2,y_2)$. $k_{NA}=\cfrac{y_1}{x_1-2}$, $k_{NB}=\cfrac{y_2}{x_2-2}$.\\
+    Using $k_1+k_2=-\cfrac{1}{3}$ as well as $y=kx+2$, we'll get\\
+    \[(6k+1)x_1x_2+(4-6k)(x_1+x_2)-20=0\]
+    We know $x_1x_2=\cfrac{4}{2k^2+1}$, $x_1+x_2=\cfrac{-8k}{2k^2+1}$, we'll get an
+    equation of $k^2-k-2=0$. $k=2$ ($k=-1$ doesn't work since it go through $N$).
+\end{enumerate}
+\end{enumerate}
+\end{document}
