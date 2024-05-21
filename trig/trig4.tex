@@ -1,0 +1,50 @@
+\documentclass[letterpaper,11pt]{article}
+\author{Shawn Ma}
+\date{\today}
+\title{Trig}
+\usepackage[pdfusetitle]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{asymptote}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+\item Simplify $\cfrac{1+\sin 4\alpha-\cos 4\alpha}{1+\sin 4\alpha+\cos 4\alpha}=$\vspace{2cm}
+
+\item Given $\tan\alpha=3$, find \textcircled{1}$\cfrac{\sin\alpha+2\cos\alpha}{5\cos\alpha-\sin\alpha}$;
+\textcircled{2}$\sin2\alpha+\cos^2\alpha$.\vspace{2cm}
+
+\item $\alpha,\beta\in\left(-\cfrac{\pi}{2},\cfrac{\pi}{2}\right)$, $\tan\alpha$ and $\tan\beta$ are
+the roots of $x^2+3\sqrt3x+4=0$. Find $\alpha+\beta$.\vspace{3cm}
+
+\item $\cos(\alpha-\beta)=\cfrac{12}{13}$, $\cos(\alpha+\beta)=-\cfrac{4}{5}$.
+$\cfrac{\pi}{2}<\alpha<\beta<\cfrac{3\pi}{4}$, find $\sin2\alpha$.\vspace{3cm}
+\item In $\triangle{ABC}$, P is on side $BC$, $\angle PAC=60^\circ, PC=2, AP+AC=4$.
+
+\begin{asy}
+    import geometry;
+    size(0,2cm);
+    coordsys r = currentcoordsys;
+    string[] labels = {"A","B","C","D","E"};
+    point A=(0, sqrt(3)), B=(-4,0), C=(1,0), P=(-1,0);
+    draw(P--A--B--C--A);
+    label("$A$",A,N);
+    label("$B$",B,S);
+    label("$C$",C,S);
+    label("$P$",P,S);
+\end{asy}
+
+\begin{enumerate}
+    \item Find $\angle ACP$
+    \item If the area of $\triangle APB$ is $\cfrac{3\sqrt3}{2}$, find $\sin\angle BAP$.\vspace{3cm}
+\end{enumerate}
+
+\item $\star$ In $\triangle{ABC}$, prove that $\sin A+\sin B +\sin C=4\cos\cfrac{A}{2}\cos\cfrac{B}{2}\cos\cfrac{C}{2}$
+
+\end{enumerate}
+
+\end{document}

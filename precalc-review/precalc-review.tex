@@ -1,0 +1,155 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+\usepackage{geometry}
+\usepackage{enumitem}
+\setlist[itemize,2]{label=$\circ$} % Set the symbol to a star for the second level
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+
+\setlength{\parindent}{0pt}
+\section{Conics}
+\begin{itemize}
+    \item \textbf{Circles:}
+        \begin{itemize}
+        \item Standard Equation (Center at the Origin):  $x^2 + y^2 = r^2$
+        \item Standard Equation (Center at (h, k)): $(x - h)^2 + (y - k)^2 = r^2$
+        \item General Equation: $x^2 + y^2 + Dx + Ey + F = 0$
+        \end{itemize}
+    \item \textbf{Ellipses:}
+        \begin{itemize}
+        \item Standard Equation (Horizontal Major Axis): $\frac{(x - h)^2}{a^2} + \frac{(y - k)^2}{b^2} = 1$
+        \item Standard Equation (Vertical Major Axis): $\frac{(x - h)^2}{b^2} + \frac{(y - k)^2}{a^2} = 1$
+        \item General Equation: $Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0$ (where $B^2 - 4AC < 0$)
+        \end{itemize}
+    \item \textbf{Parabolas:}
+        \begin{itemize}
+        \item Standard Equation (Opens Up or Down): $(x - h)^2 = 4p(y - k)$
+        \item Standard Equation (Opens Left or Right): $(y - k)^2 = 4p(x - h)$
+        \item General Equation: $y = ax^2 + bx + c$ (or $x = ay^2 + by + c$)
+        \end{itemize}
+    \item \textbf{Hyperbolas:}
+        \begin{itemize}
+        \item Standard Equation (Horizontal Transverse Axis): $\frac{(x - h)^2}{a^2} - \frac{(y - k)^2}{b^2} = 1$
+        \item Standard Equation (Vertical Transverse Axis): $\frac{(y - k)^2}{a^2} - \frac{(x - h)^2}{b^2} = 1$
+        \item General Equation: $Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0$ (where $B^2 - 4AC > 0$)
+        \end{itemize}
+    \item \textbf{Key Relationships:}
+        \begin{itemize}
+        \item Eccentricity (e):
+            \begin{itemize}
+            \item Circle: $e = 0$
+            \item Ellipse: $0 < e < 1$
+            \item Parabola: $e = 1$
+            \item Hyperbola: $e > 1$
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \twocolumn 
+
+    \section{Trig}
+    \begin{itemize}
+        \item \textbf{Reciprocal Identities:}
+            \begin{itemize}
+            \item $\csc \theta = \frac{1}{\sin \theta}$
+            \item $\sec \theta = \frac{1}{\cos \theta}$
+            \item $\cot \theta = \frac{1}{\tan \theta}$
+            \end{itemize}
+        
+        \item \textbf{Quotient Identities:}
+            \begin{itemize}
+            \item $\tan \theta = \frac{\sin \theta}{\cos \theta}$
+            \item $\cot \theta = \frac{\cos \theta}{\sin \theta}$
+            \end{itemize}
+        
+        \item \textbf{Pythagorean Identities:}
+            \begin{itemize}
+            \item $\sin^2 \theta + \cos^2 \theta = 1$
+            \item $1 + \tan^2 \theta = \sec^2 \theta$
+            \item $1 + \cot^2 \theta = \csc^2 \theta$
+            \end{itemize}
+        
+        \item \textbf{Co-Function Identities:}
+            \begin{itemize}
+            \item $\sin (\frac{\pi}{2} - \theta) = \cos \theta$
+            \item $\cos (\frac{\pi}{2} - \theta) = \sin \theta$
+            \item $\tan (\frac{\pi}{2} - \theta) = \cot \theta$
+            \end{itemize}
+        \item \textbf{Supplementary Angle Identities:}
+            \begin{itemize}
+            \item $\sin(\pi - \theta) = \sin \theta$
+            \item $\cos(\pi - \theta) = -\cos \theta$
+            \item $\tan(\pi - \theta) = -\tan \theta$
+            \end{itemize}
+
+        \item \textbf{Even/Odd Identities:}
+            \begin{itemize}
+            \item $\sin (-\theta) = -\sin \theta$
+            \item $\cos (-\theta) = \cos \theta$
+            \item $\tan (-\theta) = -\tan \theta$
+            \end{itemize}
+        
+        \item \textbf{Sum and Difference Formulas:}
+            \begin{itemize}
+            \item $\sin (\alpha \pm \beta) = \sin \alpha \cos \beta \pm \cos \alpha \sin \beta$
+            \item $\cos (\alpha \pm \beta) = \cos \alpha \cos \beta \mp \sin \alpha \sin \beta$
+            \item $\tan (\alpha \pm \beta) = \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}$
+            \end{itemize}
+        
+        \item \textbf{Double-Angle Formulas:}
+            \begin{itemize}
+            \item $\sin 2\theta = 2 \sin \theta \cos \theta$
+            \item $\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta - 1 = 1 - 2 \sin^2 \theta$
+            \item $\tan 2\theta = \frac{2 \tan \theta}{1 - \tan^2 \theta}$
+            \end{itemize}
+        \item \textbf{Half-Angle Formulas:}
+            \begin{itemize}
+                \item $\sin \frac{A}{2} = \pm \sqrt{\frac{1 - \cos A}{2}}$
+                \item $\cos \frac{A}{2} = \pm \sqrt{\frac{1 + \cos A}{2}}$
+                \item $\tan \frac{A}{2} = \pm \sqrt{\frac{1 - \cos A}{1 + \cos A}} = \frac{\sin A}{1 + \cos A} = \frac{1 - \cos A}{\sin A}$
+            \end{itemize}
+
+        \item \textbf{Product-to-Sum Formulas:}
+            \begin{itemize}
+             \item $\sin \alpha \cos \beta = \frac{1}{2} [\sin(\alpha + \beta) + \sin(\alpha - \beta)]$
+             \item $\cos \alpha \cos \beta = \frac{1}{2} [\cos(\alpha + \beta) + \cos(\alpha - \beta)]$
+             \item $\sin \alpha \sin \beta = \frac{1}{2} [\cos(\alpha - \beta) - \cos(\alpha + \beta)]$
+            \end{itemize}
+        \item \textbf{Sum-to-Product Formulas:}
+            \begin{itemize}
+            \item $\sin \alpha + \sin \beta = 2 \sin \left(\frac{\alpha + \beta}{2}\right) \cos \left(\frac{\alpha - \beta}{2}\right)$
+            \item $\sin \alpha - \sin \beta = 2 \cos \left(\frac{\alpha + \beta}{2}\right) \sin \left(\frac{\alpha - \beta}{2}\right)$
+            \item $\cos \alpha + \cos \beta = 2 \cos \left(\frac{\alpha + \beta}{2}\right) \cos \left(\frac{\alpha - \beta}{2}\right)$
+            \item $\cos \alpha - \cos \beta = -2 \sin \left(\frac{\alpha + \beta}{2}\right) \sin \left(\frac{\alpha - \beta}{2}\right)$
+        \end{itemize}
+
+        \item \textbf{Law of Sines:}
+        \begin{itemize}
+            \item $\frac{\sin A}{a} = \frac{\sin B}{b} = \frac{\sin C}{c}$
+            \item $\cfrac{a}{\sin A}=\cfrac{b}{\sin B}=\cfrac{c}{\sin C}=2R$
+            \item Where A, B, and C are the angles of a triangle, and a, b, and c are the lengths of the sides opposite those angles.
+        \end{itemize}
+        
+        \item \textbf{Law of Cosines:}
+            \begin{itemize}
+            \item $c^2 = a^2 + b^2 - 2ab \cos C$
+            \item $\cos A = \frac{b^2 + c^2 - a^2}{2bc}$            
+            \end{itemize}
+        \item \textbf{More Relationships}
+            \begin{itemize}
+            \item $[ABC]=\cfrac{abc}{4R}$
+            \item Acute triangle: $b=c\cos A +a\cos C$
+            \item Area of triangle: $[ABC]=\cfrac{1}{2}ab\sin C$
+            \item $\tan\cfrac{A}{2}=\cfrac{r}{s-a}$ and $\cos\cfrac{A}{2}=\sqrt{\cfrac{s(s-a)}{bc}}$.
+            \item $\sin A + \sin B + \sin C = \cfrac{s}{R}$
+            \item In non-right triangle, \\$\tan A + \tan B + \tan C = \tan A\tan B \tan C$
+            \item $dad+man=bmb+cnc$
+            \end{itemize}
+    \end{itemize}
+
+\end{document}

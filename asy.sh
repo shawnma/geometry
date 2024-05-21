@@ -2,7 +2,7 @@
 set -ex
 pdflatex -synctex=1 -interaction=nonstopmode -file-line-error $1
 cnt=0
-for f in *.asy; do
+for f in $(ls *.asy); do
   sum=$(sum $f|awk '{print $1}')
   sumfile="${f}.sum"
   [ -f $sumfile ] && old=$(cat $f.sum)
