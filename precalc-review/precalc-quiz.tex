@@ -1,0 +1,128 @@
+\documentclass[letterpaper,12pt]{article}
+\author{Shawn Ma}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{asymptote}
+\usepackage{geometry}
+%\let\olditem\item
+%\renewcommand{\item}[1]{\olditem{#1}\vspace{3cm}}
+
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{enumerate}
+    \setlength{\parskip}{2cm}
+    \item Find the domain of $f(x)=\log_2(x^2+2x-3)$.
+    \item Find the range of the function $y=\cfrac{3x-1}{x+1} (x\ge5)$.
+    \item If the function $f(x)=\cfrac{x-4}{mx^2+4mx+3}$ has domain $\mathbb R$, find the range of possible values of $m$.
+    \item Given $f(x-1)=x^2+4x$, find $f(x)$.
+    \item Shift the function $f(x)=\sin(\cfrac{\pi}{4}-x)$ to right by $\cfrac{\pi}{2}$ then moved up by 1 unit. What is the resulting function?
+    \item Calculate $\log_89\times\log_{27}32-\cfrac{1}{3}\log_{125}5$
+    \item Given $3^x=4^y=36$, find $\cfrac{2}{x}+\cfrac{1}{y}$.
+    \item Given $\log_{0.45}(x+2)>\log_{0.45}(1-x)$, what is the range of $x$?
+    \item Calculate $\log_2\sin\cfrac{\pi}{12}+\log_2\cos\cfrac{\pi}{12}=$
+    \item If $f(x)=x^2-x+b$ and $f(\log_2a)=b$ and $\log_2f(a)=2, (a\neq 1)$. 
+    \setlength{\parskip}{0cm}
+    \begin{enumerate}
+        \item Find the value of $a$ and $b$.
+        \item Find the minimum value of $f(\log_2x)$ and the corresponding value of $x$.
+    \end{enumerate}
+    \setlength{\parskip}{2cm}
+    \item Divide $6x^3+11x^2-31x+14$ by $3x-2$.
+    \item $f(x)$ is a polynomial of degree greater than 2. if $f(1)=2, f(2)=3$, find the remainder when $f(x)$ is divided by $(x-1)(x-2)$.
+    \item Given hyperbola $\cfrac{x^2}{a^2}-\cfrac{y^2}{b^2}=1$ has an eccentricity $(\cfrac{c}{a})$ of 2,
+    the distance from the focus to the asymptote is $\sqrt3$. A line $l$ passes through the right
+    focus $F_2$ and intersects the hyperbola at $A, B$.
+    \setlength{\parskip}{0cm}
+    \begin{enumerate}
+        \item Find the equation of the hyperbola.
+        \item If $F_1$ is the left focus and the areas of $\triangle{F_1AB}=6\sqrt2$, find the equation of $l$.
+    \end{enumerate}
+    \setlength{\parskip}{3cm}
+    \item In the diagram below, A is at $(-1,0)$ and B is at $(2,0)$. Point M is a moving point and $\angle{MBA}=2\angle{MAB}$.
+    Find the equation of the trajectory of M.
+    \setlength{\parskip}{0cm}
+
+    \begin{asy}
+size(7cm,0);
+import geometry;
+import graph;
+draw(box((-2,-1),(3,3)), invisible);
+xaxis(arrow=Arrow);
+yaxis(arrow=Arrow);
+point A=(-1,0), B=(2,0);
+dot("$A$",A,S);
+dot("$B$",B,S);
+point M=(1.5,2);
+label("$M$",M,N);
+draw(A--M--B);
+\end{asy}
+
+\item In the ellipse below, the foci are $F_1(-\sqrt3,0), F_2(\sqrt3,0)$. $l$ is the directrix. The distance
+between $F_2$ and the directrix is $\cfrac{\sqrt3}{3}$. line $k$ passes through $F_2$ and intersects the
+ellipse at $A, B$ and $F_2B=3\cdot F_2A$.
+\begin{enumerate}
+    \item Find the equation of the ellipse.
+    \item Find the equation of $k$.
+\end{enumerate}
+    \begin{asy}
+size(7cm,0);
+import geometry;
+import graph;
+draw(box((-3,-3),(3,3)), invisible);
+xaxis(arrow=Arrow);
+yaxis(arrow=Arrow);
+point f2=(1.5,0), f1=(-1.5,0);
+ellipse e = ellipse(f1, f2, 2);
+dot("$F_2$",f2,NW);
+dot("$F_1$",f1,NW);
+draw(e);
+line k=line(f2, (0,-sqrt(6)));
+draw("$k$",k);
+point[] ab=intersectionpoints(e,k);
+label("$A$",ab[0],N);
+label("$B$",ab[1],NW);
+
+line l=line((2.7,0),(2.7,1));
+draw(l);
+point b1=projection(l)*ab[1];
+draw(ab[1]--b1);
+point a1=projection(l)*ab[0];
+draw(ab[0]--a1);
+\end{asy}
+
+\item An ellipse is centered at the origin. Its foci are $(0, \pm 5\sqrt2)$. Line $y=3x-2$ intersects
+the ellipse at point $A, B$, and the x value of the midpoint of $\overline{AB}$ is $\cfrac{1}{2}$. Find
+the equation of the ellipse.
+\setlength{\parskip}{3cm}
+
+\item A parabola shaped bridge spans 20m and has a height of 4m. Poles are under the bridge to support
+the bridge and they are spaced 4m apart. Find the height of the highest pole.
+\begin{asy}
+    size(7cm,0);
+    import geometry;
+    import graph;
+    draw(box((-10,0),(10,4)), invisible);
+    parabola p=parabola((-10,0),(10,0),(0,4),line((0,0),(1,0)));
+    draw(p);
+    draw((-10,0)--(10,0));
+    for (int i=-6;i<10;i+=4) {
+        line t=line((i,0),(i,1));
+        point[] x=intersectionpoints(t,p);
+        draw((i,0)--x[0]);
+    }
+    \end{asy}
+
+    \item What is the maximum value of $f(x)=\sin^2x+\sqrt3\tan x$ where $x\in \left[\cfrac{\pi}{4},\cfrac{\pi}{3}\right]$?
+    \item Given $n$ is an integer, simply $\cfrac{\sin(\alpha+n\pi)+\sin(\alpha-n\pi)}{\sin(\alpha+n\pi)\cos(\alpha-n\pi)}$.
+    \item $a, b, c$ are the opposite sides of angle $A, B, C$ in $\triangle ABC$. $a\cos C+\sqrt3a\sin C-b-c=0$. $a=2$. Find $\angle A$ and the value of $b, c$.
+    \item In $\triangle ABC$, $b\sin A=a\cos(B-\cfrac{\pi}{6})$, (1) Find $\angle A$. (2) let a=2, c=3, find $b$ and $sin(2A-B)$.
+    \item In $\triangle ABC$, $\angle A=60^\circ$, $c=\cfrac{3}{7}a$. $a=7$. Find $\sin C$ and the area of the triangle.
+    \item Given $\alpha, \beta \in (0,\cfrac{\pi}{2})$, $\tan\alpha=\cfrac{4}{3}$, $\cos(\alpha+\beta)=-\cfrac{\sqrt5}{5}$. Find $\cos 2\alpha$ and $\tan (\alpha-\beta)$.
+
+\end{enumerate}
+
+\end{document}
