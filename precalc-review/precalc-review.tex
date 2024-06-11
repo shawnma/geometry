@@ -13,8 +13,36 @@
 \begin{document}
 
 \setlength{\parindent}{0pt}
+
+\tableofcontents
+\section{Functions}
+\begin{itemize}
+    \item Concept of \textbf{domain} and \textbf{range}.
+    \item 
+    Inverse function: $f(x)=x, g(x)=f^{-1}(x)$ such that $g(f(x))=x$. Note they may have to a domain to work (e.g., $\sin^{-1}x=\arcsin x$ has a domain of $[-1,1]$)
+    \item Graphing functions
+    \begin{enumerate}
+        \item $y=kf(x)$ scales the graph vertically by a factor of $k$ if $k>0$. It will also reflect the graph vertically if $k<0$.
+        \item $y=f(kx)$ scales the graph horizontally by a factor of $\cfrac{1}{k}$ if $k>0$.
+        \item $y=f(x)+k$ shifts the graph vertically upwards by $k$ and
+        $y=f(x)-k$ shifts the graph vertically downwards by $k$.
+        \item $y=f(x+k)$ shifts the graph horizontally to the left by $k$ and
+        $y=f(x-k)$ shifts the graph horizontally to the right by $k$.
+    \end{enumerate}
+    \item Composition: $g(f(x))$.
+\end{itemize}
+
 \section{Conics}
 \begin{itemize}
+    \item \textbf{Parabolas:}
+    A parabola is the set of all points that are equidistant to a fixed point, called the $focus$, and a fixed line, called the $directrix$.
+
+        \begin{itemize}
+        \item $y=(x - h)^2 +k$. Focus: $(h,k+\cfrac{1}{4a})$, directrix: $y=k-\cfrac{1}{4a}$.
+        \item Standard Equation (Opens Left or Right): $(y - k)^2 = 4p(x - h)$
+        \item General Equation: $y = ax^2 + bx + c$ (or $x = ay^2 + by + c$)
+        \end{itemize}
+
     \item \textbf{Circles:}
         \begin{itemize}
         \item Standard Equation (Center at the Origin):  $x^2 + y^2 = r^2$
@@ -27,12 +55,7 @@
         \item Standard Equation (Vertical Major Axis): $\frac{(x - h)^2}{b^2} + \frac{(y - k)^2}{a^2} = 1$
         \item General Equation: $Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0$ (where $B^2 - 4AC < 0$)
         \end{itemize}
-    \item \textbf{Parabolas:}
-        \begin{itemize}
-        \item Standard Equation (Opens Up or Down): $(x - h)^2 = 4p(y - k)$
-        \item Standard Equation (Opens Left or Right): $(y - k)^2 = 4p(x - h)$
-        \item General Equation: $y = ax^2 + bx + c$ (or $x = ay^2 + by + c$)
-        \end{itemize}
+    
     \item \textbf{Hyperbolas:}
         \begin{itemize}
         \item Standard Equation (Horizontal Transverse Axis): $\frac{(x - h)^2}{a^2} - \frac{(y - k)^2}{b^2} = 1$
@@ -50,6 +73,14 @@
             \end{itemize}
         \end{itemize}
     \end{itemize}
+
+\section{Polynomial Division}
+\begin{enumerate}
+    \item Standard Division
+    \item Synthetic Division
+    \item The remainder theorem
+\end{enumerate}
+
     \twocolumn 
 
     \section{Trig}

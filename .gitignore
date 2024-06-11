@@ -2,3 +2,12 @@
 *.pdf
 latex.tmp
 svg-inkscape
+*.eps
+*.asy
+*.aux
+*.log
+*.pre
+*.gz
+*.toc
+*.out
+*.sum
