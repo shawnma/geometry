@@ -8,3 +8,5 @@
 *.log
 *.pre
 *.gz
+*.fls
+*.fdb_latexmk
