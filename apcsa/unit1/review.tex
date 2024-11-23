@@ -1,0 +1,203 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{listings}
+\usetheme{metropolis}
+\usepackage{xcolor}
+\usepackage{newverbs}
+
+\renewenvironment{verbatim}
+{\semiverbatim\color{red}}
+{\endsemiverbatim}
+\renewcommand{\verb}{\collectverb{\color{codegreen}}}
+
+\usepackage{inconsolata}
+\usepackage[T1]{fontenc}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{backcolour},
+    breaklines=true,
+    showstringspaces=false,
+    captionpos=b,                    
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{AP CS A\\Unit 1 - Getting Started and Primitive Types}
+\date{\today}
+\author{Shawn Ma}
+
+\begin{document}
+    \maketitle
+    \begin{frame}[fragile]{Java Program structure}
+   
+    \begin{lstlisting}[language=Java]
+public class MyClass {
+    public static void main(String[] args) {
+        System.out.println("hello, world!");
+    }
+}
+        \end{lstlisting}
+    \begin{itemize}
+        \item The curly braces \alert{\{} could be at the end of the line or new line.
+        \item The class name must be the same as the file name (with a \verb|java| suffix.)
+        \item Java is case sensitive.
+        \item Semi-colon is required.
+    \end{itemize}
+
+\end{frame}
+\begin{frame}{Print to console}
+\begin{itemize}
+    \item \alert{System.out.println} prints the value followed by a new line (ln)
+    \item \alert{System.out.print} doesn't advance to the next line.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Comments and Strings}
+\begin{itemize}
+    \item \alert{Comments} has two forms. \verb|//| and \verb|/* */|
+    \item \verb|/* */| could span multiple rows.
+    \item A string literal is enclosed in double quotes \verb|" "|.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Compilation and Execution}
+\begin{itemize}
+    \item Java code is firstly \alert{compiled} into something called \verb|byte code|,
+        then the Java Virtual Machine (JVM) will load the code and \alert{execute} it.
+        \begin{lstlisting}[language=bash]
+$ javac Myclass.java # Compile; your IDE may be doing this for you
+$ ls
+MyClass.java  MyClass.class
+# Execution; the java command runs JVM and finds the MyClass.class and its main method
+$ java MyClass
+hello world!
+            \end{lstlisting}
+    \item This is called \alert{compiled} language. (C++, golang are another examples)
+    \item Python, Javascript are compiled and executed at the same time, they are called \alert{interpreted} languages.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variable and Data Type}
+\begin{itemize}
+    \item A variable is a name for a memory location where you can store a value that can \alert{change or vary}. In Java, they are mostly \verb|camelCase|.
+    \begin{itemize}
+        \item On the contrast, invariant objects are called \verb|constants| or often \verb|const|, in Java, it has a modifier of \verb|final| and the variable names are typically \verb|ALL_CAP_CASES|.
+    \end{itemize}
+    \item Command data Types
+    \begin{itemize}
+        \item \verb|int|
+        \item \verb|double|
+        \item \verb|boolean|
+        \item \verb|String|
+    \end{itemize}
+    \item Variables can be declared and initialized (with a \verb|=|) at the same time.
+    \begin{itemize}
+        \item Uninitialized variables get a default value. (0 for primitive types, null for Objects)
+    \end{itemize}
+    \item \verb|int| and \verb|double| are primitive types and \verb|String| is an object.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Primitive vs Object}
+    \begin{itemize}
+        \item Primitive types include only \verb|int|, \verb|double|, \verb|char|, \verb|boolean| etc (total 8). Everything else is an object.
+        \item The key difference is primitives are passed by \alert{values} and objects are passed by \alert{reference}.
+        \item Objects have to be initialized with a \verb|new| keyword.
+        \begin{lstlisting}[language=Java,basicstyle=\small,style=mystyle]
+public void addOne(int x) {
+    x++;
+}
+int y = 1;
+addOne(y);
+System.out.println(y);
+\end{lstlisting}
+    \end{itemize}
+    We'll cover Objects mutability later.
+\end{frame}
+
+\begin{frame}[fragile]{Operators}
+    \begin{itemize}
+        \item Arithmetic operators \verb|+, -, *, /, %|
+        \item Unary operators \verb|-, ++, --, !|
+        \item Compound operators \verb|+=, -=, *=, /=, %=|
+        \item Equality and Relational Operators \verb|>, <, ==, >=, <=, !=|
+        \item Conditional Operators \verb_||, &&, ?:_   
+        \item \verb|^| is bit operation (XOR); exponent is done through \verb|Math.pow()|
+        \item Prefix \& Postfix operator of \verb|-- & ++|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operators}
+    \begin{itemize}
+        \item \verb|/| is special for integers. It also doesn't round. To round, use \verb|double| type and \verb|Math.round()|
+        \item \verb|==| compares objects or primitive equality, however, for objects, it only compares the reference to the objects.
+        \begin{itemize}
+            \item To compare the content equality of objects, use \verb|.equals()| method, e.g., \verb|"text".equals(myString)|
+        \end{itemize}
+        \item In a lot of times, \verb|double| couldn't be compared with \verb|==| due to the precision loss of Java.
+        \item Divide by \verb|0| will cause a Runtime Exception called \verb|ArithmeticException|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Read user input}
+    \begin{lstlisting}[language=Java]
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Please type in a name in the input box below.");
+    Scanner scan = new Scanner(System.in);
+    String name = scan.nextLine();
+    System.out.println("Hello " + name);
+    scan.close();
+  }
+}
+        
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Casting}
+    \begin{itemize}
+        \item Convert one type to another
+        \item For now it's \verb|(int)| and \verb|(double)|
+        \item \verb|(int)| truncates the double type.
+        \item \verb|int|s have a much smaller range \verb|[Integer.MIN_VALUE, Integer.MAX_VALUE]|
+        \item Integer computations could go out of the range and cause overflow.
+        \item Objects could be casted only they are on the same inheritance tree.
+    \end{itemize}
+    Is \verb|x| and \verb|y| the same?
+    \begin{lstlisting}[language=Java]
+double x = (double) 1/3;
+double y = (double) (1/3);
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Method Signatures}
+    \begin{itemize}
+        \item Method: \verb|methodName(VariableType variableName, ...)|
+        \item \verb|System.out.println| is a method. It is also an \alert{overloaded} method.
+        \item Concepts: Method signature, parameters, parameter types, argument        
+        \item All the parameters are in fact call by \alert{values}. Call by reference is passing a copy of the reference.        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Class Methods}
+    \begin{itemize}
+        \item \verb|public static return-type method-name(parameters)|
+        \item Method could have a return value (it could be ignored by caller)
+    \end{itemize}
+\end{frame}
+
+\end{document}
