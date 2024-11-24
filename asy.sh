@@ -1,7 +1,15 @@
 #!/bin/bash
+BUILD_DIR=latex.tmp
+
+build() {
+   mkdir -p $BUILD_DIR
+   pdflatex -output-directory $BUILD_DIR -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error $1 && cp $BUILD_DIR/*.pdf .
+}
+
 set -ex
-pdflatex -synctex=1 -interaction=nonstopmode -file-line-error $1
+build $1
 cnt=0
+cd $BUILD_DIR
 for f in $(ls *.asy); do
   sum=$(sum $f|awk '{print $1}')
   sumfile="${f}.sum"
@@ -13,5 +21,6 @@ for f in $(ls *.asy); do
   fi
 done
 if [ $cnt -gt 0 ]; then
-  pdflatex -enable-pipes -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error $1
+  cd ..
+  build $1
 fi
