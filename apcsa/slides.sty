@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myslides}[2014/08/21 Example package]
+
+\RequirePackage{xcolor}
+\RequirePackage{newverbs}
+
+\renewenvironment{verbatim}
+{\semiverbatim\color{red}}
+{\endsemiverbatim}
+\renewcommand{\verb}{\collectverb{\color{codegreen}}}
+
+\RequirePackage{inconsolata}
+\RequirePackage[T1]{fontenc}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{backcolour},
+    breaklines=true,
+    showstringspaces=false,
+    captionpos=b,                    
+    tabsize=2
+}
+
+\lstset{style=mystyle}

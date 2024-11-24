@@ -13,5 +13,5 @@ for f in $(ls *.asy); do
   fi
 done
 if [ $cnt -gt 0 ]; then
-  pdflatex -synctex=1 -interaction=nonstopmode -file-line-error $1
+  pdflatex -enable-pipes -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error $1
 fi
