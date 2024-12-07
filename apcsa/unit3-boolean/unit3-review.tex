@@ -1,0 +1,67 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{listings}
+\usetheme{metropolis}
+\usepackage{svg}
+\usepackage{../slides}
+\usepackage{tabularx}
+
+\title[Boolean Expressions]{Boolean Expressions in Java}
+%\title{AP CS A\\Unit 2 - Objects}
+\date{\today}
+\author{Shawn Ma}
+
+\begin{document}
+
+\begin{frame}[fragile]{Boolean Variables and Equality Testing}
+    \begin{itemize}
+        \item \verb{==, !=, >=, >, <=, <}
+        \item \verb{if, else, else if}
+        \item \verb{&&, ||, !}
+        \item Short Circuit Evaluation
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Pop Quiz}
+    \begin{lstlisting}[language=Java]
+int x=3, y=5;
+if (++x == 4 || y++ > 5) {
+    y++;
+}
+System.out.println(x+y);
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Pop Quiz}
+    \begin{lstlisting}[language=Java]
+boolean isOdd(int x) {
+    return x%2==0;
+}
+boolean isPositive(int x) {
+    x=Math.abs(x);
+    return x > 0;
+}
+int x = -4;
+if (isPositive(x) && !isOdd(x)) {
+    System.out.println(x);
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{De Morgan’s Laws}
+    \begin{itemize}
+        \item \verb{!(a && b)} is equivalent to \verb{!a || !b}
+
+        \item \verb{!(a || b)} is equivalent to \verb{!a && !b}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{String equility}
+    \begin{itemize}
+        \item reference vs "content"
+        \item null reference will cause \verb|NullPointerException|
+    \end{itemize}
+\end{frame}
+
+\end{document}

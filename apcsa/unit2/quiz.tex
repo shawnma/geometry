@@ -15,20 +15,20 @@
 \definecolor{backcolour}{rgb}{0.98,0.98,0.95}
 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    %commentstyle=\color{codegreen},
-    %keywordstyle=\color{magenta},
-    %numberstyle=\tiny\color{codegray},
-    %stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=false,                 
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
+  backgroundcolor=\color{backcolour},
+  %commentstyle=\color{codegreen},
+  %keywordstyle=\color{magenta},
+  %numberstyle=\tiny\color{codegray},
+  %stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=false,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
 }
 
 \lstset{style=mystyle}
@@ -36,6 +36,95 @@
 \begin{document}
 \begin{enumerate}
 
-   \item 
+  \item Circle the problems of the following code and correct them.
+    \begin{lstlisting}[language=Java]
+public class Cat {
+    private final String name;
+
+    public cat() {
+        name = "Taro";
+    }
+
+    public static printName() {
+        System.out.println("my name is " + name)
+    }
+}
+Cat mycat = new cat("spud");
+mycat.printName();
+System.out.println("What is your "nickname""?)
+    \end{lstlisting}
+
+    \item What does the following code print?
+    \begin{lstlisting}[language=Java]
+public class Cat {
+    private static int age;
+
+    public Cat(int catAge) {
+        age = catAge;
+    }
+
+    public void grow() {
+        age++;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+Cat mycat = new Cat(5);
+mycat.grow();
+Cat yourCat = new Cat(9);
+yourCat.grow();
+System.out.println("my cat age = " + mycat.getAge());
+System.out.println("yourCat cat age = " + yourCat.getAge())
+    \end{lstlisting}
+
+\item Write a method to return a random number from [0, max) for a given integer \verb|max|:
+\begin{lstlisting}[language=Java]
+    public int randomInt(int max) {
+
+\end{lstlisting}
+\vspace{1in}
+
+\item What's the output of the following code? % My little the book
+\begin{lstlisting}[language=Java]
+String text = "My little fox jump over the";
+String s1 = text.substring(0, 10);
+String s2 = text.substring(text.length()-3, text.length());
+s2 += " book";
+s1.toLowerCase();
+System.out.println(s1+s2);
+
+\end{lstlisting}
+
+\item What's the output of the following code?
+\begin{lstlisting}[language=Java]
+String text = "My sister";
+String text2 = "My " + "sister";
+String text3 = text;
+System.out.println(text==text3);
+System.out.println(text==text2);
+System.out.println(text3.equals(text2));
+\end{lstlisting}
+
+
+\item What's the output of the following code?
+\begin{lstlisting}[language=Java]
+public class Cat {
+    private String name;
+    public Cat(String name) {
+        System.out.println("hello " + name);
+    }
+
+    public void print() {
+        System.out.println("hello " + name);
+    }
+}
+
+// main ...
+Cat cat = new Cat("Taro");
+cat.print();
+\end{lstlisting}
+
 \end{enumerate}
 \end{document}
