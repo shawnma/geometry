@@ -11,8 +11,6 @@ public class Piece {
     private int width;
     private int[] skirt;
     private Piece next;
-    private Piece prev;
-    // compile me
 
     private Piece(Color color, int[] coords) {
         this.color = color;
@@ -67,7 +65,6 @@ public class Piece {
         for (int i = 0; i < n - 1; i++) {
             Piece next = current.rotate();
             current.next = next;
-            next.prev = current;
             current = next;
         }
         current.next = root;
