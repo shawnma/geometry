@@ -1,38 +1,32 @@
 
 import java.awt.Color;
+import java.awt.Point;
 
-class Point {
-
-    final int x;
-    final int y;
-
-    Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public static Point of(int x, int y) {
-        return new Point(x, y);
-    }
-}
 
 public class Piece {
 
-    private Color color;
-    private Point[] points;
+    private final Color color;
+    private final Point[] points;
+    private int height;
+    private int width;
+    private int[] skirt;
     private Piece next;
+    private Piece prev;
+    // compile me
 
     private Piece(Color color, int[] coords) {
         this.color = color;
-        points = new Point[4];
+        this.points = new Point[4];
         for (int i = 0; i < 4; i++) {
-            points[i] = Point.of(coords[i * 2], coords[i * 2 + 1]);
+            points[i] = new Point(coords[i * 2], coords[i * 2 + 1]);
         }
+        computeSize();
     }
 
     private Piece(Color color, Point[] points) {
         this.color = color;
         this.points = points;
+        computeSize();
     }
 
     public static Piece[] getPieces() {
@@ -46,12 +40,34 @@ public class Piece {
         return new Piece[]{l, l2, dog, dog2, line, t, square};
     }
 
+    private void computeSize() {
+        for (int i = 0; i < 4; i++) {
+            if (points[i].x + 1 > width) {
+                width = points[i].x + 1;
+            }
+            if (points[i].y + 1 > height) {
+                height = points[i].y + 1;
+            }
+        }
+        skirt = new int[width];
+        for (int i = 0; i < skirt.length; i++) {
+            skirt[i] = height;
+        }
+        for (Point point : points) {
+            int x = point.x;
+            if (skirt[x] > point.y) {
+                skirt[x] = point.y;
+            }
+        }
+    }
+
     private static Piece constructRow(Color color, int[] coords, int n) {
         Piece root = new Piece(color, coords);
         Piece current = root;
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             Piece next = current.rotate();
             current.next = next;
+            next.prev = current;
             current = next;
         }
         current.next = root;
@@ -78,7 +94,7 @@ public class Piece {
             Point old = points[i];
             int newx = -old.y + shift;
             int newy = old.x;
-            p[i] = Point.of(newx, newy);
+            p[i] = new Point(newx, newy);
         }
         return new Piece(color, p);
     }
@@ -88,17 +104,14 @@ public class Piece {
     }
 
     public int getWidth() {
-        // TODO
-        return 0;
+        return width;
     }
 
     public int getHeight() {
-        // TODO
-        return 0;
+        return height;
     }
 
     public int[] getSkirt() {
-        // TODO
-        return new int[3];
+        return skirt;
     }
 }
