@@ -1,11 +1,14 @@
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Represents a Tetris board -- essentially a 2-d grid
- * of booleans. Supports tetris pieces and row clearning.
- * Has an "undo" feature that allows clients to add and remove pieces efficiently.
- * Does not do any drawing or have any idea of pixels. Intead,
- * just represents the abtsract 2-d board.
- * See Tetris-Architecture.html for an overview.
+ * Represents a Tetris board -- essentially a 2-d grid of booleans. Supports
+ * tetris pieces and row clearning. Has an "undo" feature that allows clients to
+ * add and remove pieces efficiently. Does not do any drawing or have any idea
+ * of pixels. Intead, just represents the abtsract 2-d board. See
+ * Tetris-Architecture.html for an overview.
  *
  * This is the starter file version -- a few simple things are filled in already
  *
@@ -17,6 +20,7 @@ public final class Board {
     private int width;
     private int height;
     private boolean[][] grid;
+    private List<Point> undoList = new ArrayList<>();
 
     private boolean DEBUG = true;
 
@@ -49,7 +53,11 @@ public final class Board {
      * this is 0.
      */
     public int getMaxHeight() {
-        return 0;
+        int max = 0;
+        for (int i = 0; i < width; i++) {
+            max = Math.max(max, getColumnHeight(i));
+        }
+        return max;
     }
 
     /**
@@ -70,7 +78,13 @@ public final class Board {
      * O(skirt length).
      */
     public int dropHeight(Piece piece, int x) {
-        return 0;
+        // this is required to drop the piece directly down
+        int[] skirt = piece.getSkirt();
+        int h = 0;
+        for (int i = 0; i < skirt.length; i++) {
+            h = Math.max(h, getColumnHeight(x + i) - skirt[i]);
+        }
+        return h;
     }
 
     /**
@@ -78,7 +92,14 @@ public final class Board {
      * block + 1. The height is 0 if the column contains no blocks.
      */
     public int getColumnHeight(int x) {
-        return 0;
+        int h = 0;
+        for (int i = height - 1; i >= 0; i--) {
+            if (grid[x][i]) {
+                h = i + 1;
+                break;
+            }
+        }
+        return h;
     }
 
     /**
@@ -115,7 +136,31 @@ public final class Board {
      * returned. An undo() will remove the bad placement.
      */
     public int place(Piece piece, int x, int y) {
-        return 0;
+        for (Point p : piece.getPoints()) {
+            int px = p.x + x;
+            int py = p.y + y;
+            if (px < 0 || py < 0 || px >= width || py >= height) {
+                return PLACE_OUT_BOUNDS;
+            }
+            if (grid[px][py]) {
+                return PLACE_BAD;
+            }
+            grid[px][py] = true;
+            undoList.add(new Point(px, py));
+        }
+        for (int i = 0; i < getMaxHeight(); i++) {
+            boolean filled = true;
+            for (int j = 0; j < width; j++) {
+                if (!grid[j][i]) {
+                    filled = false;
+                    break;
+                }
+            }
+            if (filled) {
+                return PLACE_ROW_FILLED;
+            }
+        }
+        return PLACE_OK;
     }
 
     /**
@@ -128,7 +173,31 @@ public final class Board {
      * be filled.
      */
     public boolean clearRows() {
-        return false;
+        int j = 0;
+        int h = getMaxHeight();
+        for (int i = 0; i < h; i++) {
+            boolean filled = true;
+            for (int x = 0; x < width; x++) {
+                if (!grid[x][i]) {
+                    filled = false;
+                    break;
+                }
+            }
+            if (!filled) {
+                if (j != i) { // only copy when they are different
+                    for (int x = 0; x < width; x++) {
+                        grid[x][j] = grid[x][i];
+                    }
+                }
+                j++;
+            }
+        }
+        for (int i = j; i < h; i++) {
+            for (int x = 0; x < width; x++) {
+                grid[x][i] = false;
+            }
+        }
+        return j != h;
     }
 
     /**
@@ -138,11 +207,16 @@ public final class Board {
      * then the second undo() does nothing. See the overview docs.
      */
     public void undo() {
+        for (Point p : undoList) {
+            grid[p.x][p.y] = false;
+        }
+        undoList.clear();
     }
 
     /**
      * Puts the board in the committed state. See the overview docs.
      */
     public void commit() {
+        undoList.clear();
     }
 }
