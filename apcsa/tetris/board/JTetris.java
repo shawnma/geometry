@@ -95,16 +95,16 @@ public class JTetris extends JComponent {
          */
         Map<Integer, Integer> keyMap = new HashMap<>();
         keyMap.put(KeyEvent.VK_LEFT, LEFT);
-		keyMap.put(KeyEvent.VK_J, LEFT);
-		keyMap.put(KeyEvent.VK_L, RIGHT);
-		keyMap.put(KeyEvent.VK_K, ROTATE);
+        keyMap.put(KeyEvent.VK_J, LEFT);
+        keyMap.put(KeyEvent.VK_L, RIGHT);
+        keyMap.put(KeyEvent.VK_K, ROTATE);
         keyMap.put(KeyEvent.VK_RIGHT, RIGHT);
         keyMap.put(KeyEvent.VK_UP, ROTATE);
         keyMap.put(KeyEvent.VK_SPACE, DROP);
         keyMap.put(KeyEvent.VK_DOWN, DROP);
         keyMap.forEach((key, value) -> {
             registerKeyboardAction((_) -> {
-				System.err.println("Key pressed: " + key + " action:" + value);
+                System.err.println("Key pressed: " + key + " action:" + value);
                 tick(value);
             }, key.toString(), KeyStroke.getKeyStroke(key, 0), WHEN_IN_FOCUSED_WINDOW);
         });
@@ -525,7 +525,7 @@ public class JTetris extends JComponent {
         if (testMode) {
             speed.setValue(200);	// max for test mode
         }
-		speed.setActionMap(null);
+        speed.setActionMap(null);
         updateTimer();
         row.add(speed);
 
