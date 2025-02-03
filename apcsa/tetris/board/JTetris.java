@@ -457,12 +457,14 @@ public class JTetris extends JComponent {
             // draw from 0 up to the col height
             final int yHeight = board.getColumnHeight(x);
             for (y = 0; y < yHeight; y++) {
-                if (board.getGrid(x, y)) {
+				Color cell = board.getGrid(x, y);
+                if (cell != null) {
                     final boolean filled = (board.getRowWidth(y) == bWidth);
                     if (filled) {
                         g.setColor(Color.green);
                     }
 
+					g.setColor(cell);
                     g.fillRect(left + 1, yPixel(y) + 1, dx, dy);	// +1 to leave a white border
 
                     if (filled) {

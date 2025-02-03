@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public final class Board {
 
     private int width;
     private int height;
-    private boolean[][] grid;
+    private Color[][] grid;
     private List<Point> undoList = new ArrayList<>();
 
     private boolean DEBUG = true;
@@ -31,7 +32,7 @@ public final class Board {
         width = w;
         height = h;
 
-        grid = new boolean[width][height];
+        grid = new Color[width][height];
     }
 
     /**
@@ -94,7 +95,7 @@ public final class Board {
     public int getColumnHeight(int x) {
         int h = 0;
         for (int i = height - 1; i >= 0; i--) {
-            if (grid[x][i]) {
+            if (grid[x][i] != null) {
                 h = i + 1;
                 break;
             }
@@ -113,7 +114,7 @@ public final class Board {
      * Returns true if the given block is filled in the board. Blocks outside of
      * the valid width/height area always return true.
      */
-    public final boolean getGrid(int x, int y) {
+    public final Color getGrid(int x, int y) {
         return grid[x][y];
     }
 
@@ -142,16 +143,16 @@ public final class Board {
             if (px < 0 || py < 0 || px >= width || py >= height) {
                 return PLACE_OUT_BOUNDS;
             }
-            if (grid[px][py]) {
+            if (grid[px][py] != null) {
                 return PLACE_BAD;
             }
-            grid[px][py] = true;
+            grid[px][py] = piece.getColor();
             undoList.add(new Point(px, py));
         }
         for (int i = 0; i < getMaxHeight(); i++) {
             boolean filled = true;
             for (int j = 0; j < width; j++) {
-                if (!grid[j][i]) {
+                if (grid[j][i] == null) {
                     filled = false;
                     break;
                 }
@@ -178,7 +179,7 @@ public final class Board {
         for (int i = 0; i < h; i++) {
             boolean filled = true;
             for (int x = 0; x < width; x++) {
-                if (!grid[x][i]) {
+                if (grid[x][i] == null) {
                     filled = false;
                     break;
                 }
@@ -194,7 +195,7 @@ public final class Board {
         }
         for (int i = j; i < h; i++) {
             for (int x = 0; x < width; x++) {
-                grid[x][i] = false;
+                grid[x][i] = null;
             }
         }
         return j != h;
@@ -208,7 +209,7 @@ public final class Board {
      */
     public void undo() {
         for (Point p : undoList) {
-            grid[p.x][p.y] = false;
+            grid[p.x][p.y] = null;
         }
         undoList.clear();
     }
