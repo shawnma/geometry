@@ -1,8 +1,6 @@
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a Tetris board -- essentially a 2-d grid of booleans. Supports
@@ -21,7 +19,8 @@ public final class Board {
     private int width;
     private int height;
     private Color[][] grid;
-    private List<Point> undoList = new ArrayList<>();
+    private Color[][] backupGrid;
+    private boolean committed;
 
     private boolean DEBUG = true;
 
@@ -33,6 +32,7 @@ public final class Board {
         height = h;
 
         grid = new Color[width][height];
+        backupGrid = new Color[width][height];
     }
 
     /**
@@ -107,7 +107,13 @@ public final class Board {
      * Returns the number of filled blocks in the given row.
      */
     public int getRowWidth(int y) {
-        return 0;
+        int count = 0;
+        for (int i = 0; i < width; i++) {
+            if (grid[i][y] != null) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -137,6 +143,10 @@ public final class Board {
      * returned. An undo() will remove the bad placement.
      */
     public int place(Piece piece, int x, int y) {
+        for (int i = 0; i < width; i++) {
+            System.arraycopy(grid[i], 0, backupGrid[i], 0, height);
+        }
+        committed = false;
         for (Point p : piece.getPoints()) {
             int px = p.x + x;
             int py = p.y + y;
@@ -147,7 +157,6 @@ public final class Board {
                 return PLACE_BAD;
             }
             grid[px][py] = piece.getColor();
-            undoList.add(new Point(px, py));
         }
         for (int i = 0; i < getMaxHeight(); i++) {
             boolean filled = true;
@@ -208,16 +217,33 @@ public final class Board {
      * then the second undo() does nothing. See the overview docs.
      */
     public void undo() {
-        for (Point p : undoList) {
-            grid[p.x][p.y] = null;
+        if (committed) {
+            return;
         }
-        undoList.clear();
+        for (int i = 0; i < width; i++) {
+            System.arraycopy(backupGrid[i], 0, grid[i], 0, height);
+        }
+        committed = true;
     }
 
     /**
      * Puts the board in the committed state. See the overview docs.
      */
     public void commit() {
-        undoList.clear();
+        committed = true;
+    }
+
+    public void dump(String hint) {
+        System.out.println("Board: (" + hint + ")");
+        for (int j = height - 1; j >= 0; j--) {
+            for (int i = 0; i < width; i++) {
+                if (grid[i][j] != null) {
+                    System.out.print("M");
+                } else {
+                    System.out.print(".");
+                }
+            }
+            System.out.println();
+        }
     }
 }

@@ -44,7 +44,7 @@ public class JTetris extends JComponent {
     public final int TEST_LIMIT = 100;
 
     // Is drawing optimized
-    protected boolean DRAW_OPTIMIZE = true;
+    protected boolean DRAW_OPTIMIZE = false;
 
     // Board data structures
     protected Board board;
@@ -78,10 +78,10 @@ public class JTetris extends JComponent {
 
     public final int DELAY = 400;	// milliseconds per tick
 
-    JTetris(int width, int height) {
+    JTetris(int pixels) {
         super();
 
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(WIDTH * pixels + 2, (HEIGHT + TOP_SPACE) * pixels + 2));
         gameOn = false;
 
         pieces = Piece.getPieces();
@@ -521,7 +521,8 @@ public class JTetris extends JComponent {
 
         // SPEED slider
         panel.add(Box.createVerticalStrut(12));
-        row.add(new JLabel("Speed:"));
+        JLabel speedLabel = new JLabel("Speed: 75");
+        row.add(speedLabel);
         speed = new JSlider(0, 200, 75);	// min, max, current
         speed.setPreferredSize(new Dimension(100, 15));
         if (testMode) {
@@ -534,29 +535,22 @@ public class JTetris extends JComponent {
         panel.add(row);
         speed.addChangeListener((_) -> {
             updateTimer();
+            speedLabel.setText("Speed: " + speed.getValue());   
         });
 
         return (panel);
     }
 
     /**
-     * Creates a Window, installs the JTetris or JBrainTetris, checks the
-     * testMode state, install the controls in the WEST.
-     */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Tetris 2024");
+	 * Creates and returns a frame around the given JTetris.
+	 * The new frame is not visible.
+	 */
+	public static JFrame createFrame(JTetris tetris) {
+		JFrame frame = new JFrame("Tetris 2024");
         JComponent container = (JComponent) frame.getContentPane();
         container.setLayout(new BorderLayout());
 
-        // Could create a JTetris or JBrainTetris here
-        final int pixels = 40;
-        JTetris tetris = new JTetris(WIDTH * pixels + 2, (HEIGHT + TOP_SPACE) * pixels + 2);
-
         container.add(tetris, BorderLayout.CENTER);
-
-        if (args.length != 0 && args[0].equals("test")) {
-            tetris.testMode = true;
-        }
 
         Container panel = tetris.createControlPanel();
 
@@ -573,5 +567,14 @@ public class JTetris extends JComponent {
         frame.setVisible(true);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+        return frame;
+	}
+
+	/**
+	 Creates a frame with a JTetris.
+	 */
+	public static void main(String[] args) {
+		JTetris tetris = new JTetris(40);
+		JTetris.createFrame(tetris);
+	}
 }
