@@ -182,7 +182,7 @@ public final class Board {
      * down to its correct location in one pass. Note that more than one row may
      * be filled.
      */
-    public boolean clearRows() {
+    public int clearRows() {
         int j = 0;
         int h = getMaxHeight();
         for (int i = 0; i < h; i++) {
@@ -207,7 +207,7 @@ public final class Board {
                 grid[x][i] = null;
             }
         }
-        return j != h;
+        return  h-j;
     }
 
     /**

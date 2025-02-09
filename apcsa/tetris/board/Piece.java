@@ -28,14 +28,14 @@ public class Piece {
     }
 
     public static Piece[] getPieces() {
-        Piece l = constructRow(Color.MAGENTA, new int[]{0, 0, 0, 1, 0, 2, 1, 0}, 4);
-        Piece l2 = constructRow(Color.RED, new int[]{0, 0, 1, 1, 1, 0, 1, 2}, 4);
-        Piece dog = constructRow(Color.ORANGE, new int[]{0, 0, 1, 0, 1, 1, 2, 1}, 2);
-        Piece dog2 = constructRow(Color.YELLOW, new int[]{0, 1, 1, 1, 1, 0, 2, 0}, 2);
-        Piece line = constructRow(Color.CYAN, new int[]{0, 0, 0, 1, 0, 2, 0, 3}, 2);
-        Piece t = constructRow(Color.GREEN, new int[]{0, 0, 1, 0, 2, 0, 1, 1}, 4);
-        Piece square = constructRow(Color.BLUE, new int[]{0, 0, 0, 1, 1, 0, 1, 1}, 1);
-        return new Piece[]{l, l2, dog, dog2, line, t, square};
+        Piece l = constructRow(new Color(0x86B8D4), new int[]{0, 0, 0, 1, 0, 2, 1, 0}, 4);
+        Piece j = constructRow(new Color(0xFF99A8), new int[]{0, 0, 1, 1, 1, 0, 1, 2}, 4);
+        Piece s = constructRow(new Color(0x46E6CA), new int[]{0, 0, 1, 0, 1, 1, 2, 1}, 2);
+        Piece z = constructRow(new Color(0x78C878), new int[]{0, 1, 1, 1, 1, 0, 2, 0}, 2);
+        Piece i = constructRow(new Color(0xa274DE), new int[]{0, 0, 0, 1, 0, 2, 0, 3}, 2);
+        Piece t = constructRow(new Color(0xFF40C2), new int[]{0, 0, 1, 0, 2, 0, 1, 1}, 4);
+        Piece o = constructRow(new Color(0x8C4625), new int[]{0, 0, 0, 1, 1, 0, 1, 1}, 1);
+        return new Piece[]{l, j, s, z, i, t, o};
     }
 
     private void computeSize() {

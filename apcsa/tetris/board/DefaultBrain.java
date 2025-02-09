@@ -41,11 +41,12 @@ public class DefaultBrain implements Brain {
                 if (y < yBound) {    // piece does not stick up too far
                     int result = board.place(current, x, y);
                     if (result <= Board.PLACE_ROW_FILLED) {
+                        int cleared = 0;
                         if (result == Board.PLACE_ROW_FILLED) {
-                            board.clearRows();
+                            cleared = board.clearRows();
                         }
 
-                        double score = rateBoard(board);
+                        double score = rateBoard(board, cleared);
 
                         if (score < bestScore) {
                             bestScore = score;
@@ -80,7 +81,7 @@ public class DefaultBrain implements Brain {
      This version just counts the height
      and the number of "holes" in the board.
      */
-    public double rateBoard(Board board) {
+    public double rateBoard(Board board, int cleared) {
         return 0;
     }
 

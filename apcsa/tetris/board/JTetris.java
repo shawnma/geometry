@@ -345,7 +345,7 @@ public class JTetris extends JComponent {
          */
         if (failed && verb == DOWN && !moved) {	// it's landed
 
-            if (board.clearRows()) {
+            if (board.clearRows()>0) {
                 repaint();	// repaint to show the result of the row clearing
             }
 
